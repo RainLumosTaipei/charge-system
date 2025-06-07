@@ -76,6 +76,9 @@ public partial class App : Application
             services.AddSingleton<IChargingPileService, ChargingPileService>();
 
             // Views and ViewModels
+            services.AddTransient<LoginViewModel>();
+            services.AddTransient<RegisterViewModel>();
+
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
             services.AddTransient<OrderViewModel>();

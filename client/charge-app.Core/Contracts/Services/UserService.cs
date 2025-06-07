@@ -20,4 +20,36 @@ public class UserService : IUserService
             return Enumerable.Empty<User>();
         }
     }
+
+    public async Task<bool> Register(string name, string password)
+    {
+        try
+        {
+            var json = await HttpHelper.GetAsync(
+                "/CreateNewAccount?name=" + name + "&password=" + password);
+            var u = await JsonHelper.ToObjectAsync<bool>(json);
+            return u; // 返回IEnumerable<User>
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"can't get users: {ex.Message}");
+            return false;
+        }
+    }
+
+    public async Task<bool> Login(string name, string password)
+    {
+        try
+        {
+            var json = await HttpHelper.GetAsync(
+                "/Login?name=" + name + "&password=" + password);
+            var u = await JsonHelper.ToObjectAsync<bool>(json);
+            return u; // 返回IEnumerable<User>
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"can't get users: {ex.Message}");
+            return false;
+        }
+    }
 }
