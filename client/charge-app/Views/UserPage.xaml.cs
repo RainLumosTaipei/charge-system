@@ -8,6 +8,7 @@ namespace charge_app.Views;
 
 public sealed partial class UserPage : Page
 {
+    // get data mapping
     public UserViewModel ViewModel
     {
         get;

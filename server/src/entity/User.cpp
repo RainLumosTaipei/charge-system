@@ -32,8 +32,26 @@ void User::setOrders(const std::vector<Order> &orders) {
     User::orders = orders;
 }
 
+size_t User::getId() const {
+    return id;
+}
+
+void User::setId(size_t id) {
+    User::id = id;
+}
+
+UserType User::getType() const {
+    return type;
+}
+
+void User::setType(UserType type) {
+    User::type = type;
+}
+
 void to_json(nlohmann::json& j, const User& u) {
+    j["id"] = u.getId();
     j["name"] = u.getName();
     j["password"] = u.getPassword();
+    j["type"] = u.getType();
     j["orders"] = u.getOrders();
 }

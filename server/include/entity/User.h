@@ -27,6 +27,14 @@ public:
 
     User(std::string name, std::string password, UserType type);
 
+    size_t getId() const;
+
+    void setId(size_t id);
+
+    UserType getType() const;
+
+    void setType(UserType type);
+
 private:
     size_t id;
     std::string name;

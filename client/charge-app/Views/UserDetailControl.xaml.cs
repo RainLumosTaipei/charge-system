@@ -7,16 +7,17 @@ namespace charge_app.Views;
 
 public sealed partial class UserDetailControl : UserControl
 {
-    // data
-    public SampleOrder? ListDetailsMenuItem
-    {
-        get => GetValue(ListDetailsMenuItemProperty) as SampleOrder;
-        set => SetValue(ListDetailsMenuItemProperty, value);
-    }
 
     public static readonly DependencyProperty ListDetailsMenuItemProperty =
-        DependencyProperty.Register("ListDetailsMenuItem", typeof(SampleOrder), typeof(UserDetailControl),
+        DependencyProperty.Register("ListDetailsMenuItem", typeof(UserDesc), typeof(UserDetailControl),
             new PropertyMetadata(null, OnListDetailsMenuItemPropertyChanged));
+
+    // data
+    public UserDesc? ListDetailsMenuItem
+    {
+        get => GetValue(ListDetailsMenuItemProperty) as UserDesc;
+        set => SetValue(ListDetailsMenuItemProperty, value);
+    }
 
     public UserDetailControl()
     {

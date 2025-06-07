@@ -18,8 +18,8 @@
   <mp:PhoneIdentity PhoneProductId="f7b44345-7080-408f-88e0-5b1cce94b732" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
     
   <Properties>
-    <DisplayName>charge-app</DisplayName>
-    <PublisherDisplayName>zhou_zhengming</PublisherDisplayName>
+    <DisplayName>充电管理应用</DisplayName>
+    <PublisherDisplayName>周正明</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
