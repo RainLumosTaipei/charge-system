@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "charge-app (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "charge-app (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}

@@ -1,2 +1,10 @@
 server/cmake-build-debug/
 .idea/
+.vs/
+client/charge-app/obj/
+client/charge-app.Core/obj/
+client/charge-app.Tests.MSTest/obj/
+client/charge-app.Tests.MSTest/bin/
+client/charge-app/.vs
+client/charge-app.Core/bin/
+client/charge-app/bin/
