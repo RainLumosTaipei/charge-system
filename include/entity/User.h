@@ -9,6 +9,7 @@
 #include <vector>
 #include "Order.h"
 #include "util/JsonHelper.h"
+#include "UserType.h"
 
 class User {
 public:
@@ -24,10 +25,13 @@ public:
 
     void setOrders(const std::vector<Order> &orders);
 
+    User(std::string name, std::string password, UserType type);
+
 private:
     size_t id;
     std::string name;
     std::string password;
+    UserType type;
     std::vector<Order> orders;
 };
 

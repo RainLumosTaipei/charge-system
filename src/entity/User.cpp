@@ -5,6 +5,9 @@
 #include "entity/User.h"
 #include "util/JsonHelper.h"
 
+User::User(std::string name, std::string password, UserType type)
+        : name(std::move(name)), password(std::move(password)), type(type) {}
+
 const std::string &User::getName() const {
     return name;
 }

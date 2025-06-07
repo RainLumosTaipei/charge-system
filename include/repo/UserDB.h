@@ -11,9 +11,12 @@
 class UserDB {
 private:
     std::vector<User> users;
-    UserDB();
+
+    UserDB(std::vector<User>);
 public:
     static UserDB g_User;
+
+    const std::vector<User> &getUsers();
 };
 
 
