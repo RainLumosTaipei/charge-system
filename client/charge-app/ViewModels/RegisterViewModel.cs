@@ -10,4 +10,22 @@ public class RegisterViewModel
     {
         _userService = userService;
     }
+
+    public string Username
+    {
+        get;
+        set;
+    }
+
+    public string Password
+    {
+        get;
+        set;
+    }
+
+
+    public async Task<bool> RegisterAsync()
+    {
+        return await _userService.Register(Username, Password);
+    }
 }

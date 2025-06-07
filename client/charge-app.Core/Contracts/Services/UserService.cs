@@ -27,8 +27,8 @@ public class UserService : IUserService
         {
             var json = await HttpHelper.GetAsync(
                 "/CreateNewAccount?name=" + name + "&password=" + password);
-            var u = await JsonHelper.ToObjectAsync<bool>(json);
-            return u; // 返回IEnumerable<User>
+            var u = await JsonHelper.ToObjectAsync<LoginRes>(json);
+            return u.Return; // 返回IEnumerable<User>
         }
         catch (Exception ex)
         {
@@ -42,9 +42,9 @@ public class UserService : IUserService
         try
         {
             var json = await HttpHelper.GetAsync(
-                "/Login?name=" + name + "&password=" + password);
-            var u = await JsonHelper.ToObjectAsync<bool>(json);
-            return u; // 返回IEnumerable<User>
+                "/login?name=" + name + "&password=" + password);
+            var u = await JsonHelper.ToObjectAsync<LoginRes>(json);
+            return u.Return; // 返回IEnumerable<User>
         }
         catch (Exception ex)
         {
