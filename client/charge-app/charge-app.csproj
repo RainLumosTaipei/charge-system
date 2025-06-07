@@ -41,10 +41,10 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Page Update="Views\RegisterDialog.xaml">
+    <Page Update="Views\RegisterWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Views\LoginDialog.xaml">
+    <Page Update="Views\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

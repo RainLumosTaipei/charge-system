@@ -19,15 +19,13 @@ public sealed partial class MainPage : Page
 
     private async void Login(object sender, RoutedEventArgs e)
     {
-        var dialog = new LoginDialog();
-        dialog.XamlRoot = this.Content.XamlRoot;
-        await dialog.ShowAsync();
+        var wnd = new LoginWindow();
+        wnd.Activate();
     }
 
     private async void Register(object sender, RoutedEventArgs e)
     {
-        var dialog = new RegisterDialog();
-        dialog.XamlRoot = this.Content.XamlRoot;
-        await dialog.ShowAsync();
+        var wnd = new RegisterWindow();
+        wnd.Activate();
     }
 }
