@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 public class HttpHelper
 {
-    private static string ServerIp = "http://10.29.88.190:8080";
+    private static string ServerIp = "http://127.0.0.1:8080";
     public static async Task<string> GetAsync(string url)
     {
         try

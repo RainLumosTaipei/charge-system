@@ -37,6 +37,15 @@ public sealed partial class RegisterWindow : Window
         AppWindow.Title = "注册";
         AppWindow.Resize(new Windows.Graphics.SizeInt32(600, 800));
         AppWindow.Move(new Windows.Graphics.PointInt32(800, 400));
+
+        AppWindow.TitleBar.BackgroundColor = Microsoft.UI.Colors.Black;
+        AppWindow.TitleBar.ForegroundColor = Microsoft.UI.Colors.White;
+        AppWindow.TitleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Black;
+        AppWindow.TitleBar.ButtonForegroundColor = Microsoft.UI.Colors.White;
+        AppWindow.TitleBar.ButtonHoverBackgroundColor = Microsoft.UI.Colors.DarkGray;
+        AppWindow.TitleBar.ButtonHoverForegroundColor = Microsoft.UI.Colors.White;
+        AppWindow.TitleBar.ButtonPressedBackgroundColor = Microsoft.UI.Colors.Gray;
+        AppWindow.TitleBar.ButtonPressedForegroundColor = Microsoft.UI.Colors.White;
     }
 
     private async void Register(object sender, RoutedEventArgs e)

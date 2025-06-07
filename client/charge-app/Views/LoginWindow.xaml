@@ -12,14 +12,29 @@
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
+
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <TextBox PlaceholderText="用户名" Text="{x:Bind ViewModel.Username, Mode=TwoWay}"/>
         <PasswordBox PlaceholderText="密码" Password="{x:Bind ViewModel.Password, Mode=TwoWay}"/>
 
-        <StackPanel Orientation="Horizontal">
-            <Button Content="登录" Click="Login"></Button>
-            <Button Content="取消" Click="Cancel"></Button>
-        </StackPanel>
+        <Grid Width="300">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Content="登录"
+                Click="Login"
+                Grid.Column="0"
+                Margin="5" />
+
+            <Button
+                Content="取消"
+                Click="Cancel"
+                Grid.Column="1"
+                Margin="5" />
+        </Grid>
     </StackPanel>
 
 </Window>

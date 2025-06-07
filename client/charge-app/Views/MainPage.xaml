@@ -14,57 +14,56 @@
             <Setter Property="Foreground" Value="White" />
             <Setter Property="Background" Value="{ThemeResource SystemAccentColorDark1}" />
 
-            <!-- 添加视觉状态管理 -->
+            <!--  添加视觉状态管理  -->
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                            <!--  按钮内容  -->
+                            <ContentPresenter
+                                x:Name="ContentPresenter"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                             <VisualStateManager.VisualStateGroups>
-                                <!-- 普通状态 -->
+                                <!--  普通状态  -->
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal" />
 
-                                    <!-- 悬停状态 -->
+                                    <!--  悬停状态  -->
                                     <VisualState x:Name="PointerOver">
                                         <Storyboard>
-                                            <ColorAnimation 
-                                        Storyboard.TargetName="RootGrid"
-                                        Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
-                                        To="{ThemeResource SystemAccentColor}"
-                                        Duration="0:0:0.1" />
+                                            <ColorAnimation
+                                                Storyboard.TargetName="RootGrid"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                To="{ThemeResource SystemAccentColor}"
+                                                Duration="0:0:0.1" />
                                         </Storyboard>
                                     </VisualState>
 
-                                    <!-- 按下状态 -->
+                                    <!--  按下状态  -->
                                     <VisualState x:Name="Pressed">
                                         <Storyboard>
-                                            <ColorAnimation 
-                                        Storyboard.TargetName="RootGrid"
-                                        Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
-                                        To="{ThemeResource SystemAccentColorDark2}"
-                                        Duration="0:0:0.1" />
+                                            <ColorAnimation
+                                                Storyboard.TargetName="RootGrid"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                To="{ThemeResource SystemAccentColorDark2}"
+                                                Duration="0:0:0.1" />
                                         </Storyboard>
                                     </VisualState>
 
-                                    <!-- 禁用状态 -->
+                                    <!--  禁用状态  -->
                                     <VisualState x:Name="Disabled">
                                         <Storyboard>
                                             <DoubleAnimation
-                                        Storyboard.TargetName="ContentPresenter"
-                                        Storyboard.TargetProperty="Opacity"
-                                        To="0.5"
-                                        Duration="0:0:0.1" />
+                                                Storyboard.TargetName="ContentPresenter"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0.5"
+                                                Duration="0:0:0.1" />
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-
-                            <!-- 按钮内容 -->
-                            <ContentPresenter 
-                        x:Name="ContentPresenter"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                        Padding="{TemplateBinding Padding}" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -89,24 +88,23 @@
             FontWeight="Bold"
             Text="新能源充电管理系统，&#10;你身边的贴心生活小助手" />
 
-        <StackPanel 
-            Margin="50 250 0 0"
-            HorizontalAlignment="Left" 
+        <StackPanel
+            Margin="50,250,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Orientation="Horizontal">
-            <Button 
-                Style="{StaticResource AccentButton}"
-                FontSize="18"
+            <Button
                 Width="150"
-                Margin="0 0 30 0"
+                Margin="0,0,30,0"
+                Click="Login"
                 Content="登录"
-                Click="Login"/>
-            <Button 
                 FontSize="18"
+                Style="{StaticResource AccentButton}" />
+            <Button
                 Width="150"
-                Content="注册"
                 Click="Register"
-                />
+                Content="注册"
+                FontSize="18" />
         </StackPanel>
     </Grid>
 </Page>
