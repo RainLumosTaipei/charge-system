@@ -1,5 +1,5 @@
 ﻿using charge_app.ViewModels;
-
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
 namespace charge_app.Views;
@@ -15,5 +15,17 @@ public sealed partial class MainPage : Page
     {
         ViewModel = App.GetService<MainViewModel>();
         InitializeComponent();
+    }
+
+    private async void Login(object sender, RoutedEventArgs e)
+    {
+        var wnd = new LoginWindow();
+        wnd.Activate();
+    }
+
+    private async void Register(object sender, RoutedEventArgs e)
+    {
+        var wnd = new RegisterWindow();
+        wnd.Activate();
     }
 }

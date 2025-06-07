@@ -71,8 +71,14 @@ public partial class App : Application
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();
             services.AddSingleton<IFileService, FileService>();
+            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IOrderService, OrderService>();
+            services.AddSingleton<IChargingPileService, ChargingPileService>();
 
             // Views and ViewModels
+            services.AddTransient<LoginViewModel>();
+            services.AddTransient<RegisterViewModel>();
+
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
             services.AddTransient<OrderViewModel>();

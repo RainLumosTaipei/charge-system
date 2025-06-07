@@ -11,31 +11,34 @@ namespace charge_app.ViewModels;
 public partial class UserViewModel : ObservableRecipient, INavigationAware
 {
     // get data
-    private readonly ISampleDataService _sampleDataService;
+    private readonly IUserService _userService;
+    private readonly IOrderService _orderService;
 
     [ObservableProperty]
-    private SampleOrder? selected;
+    private UserDesc? selected;
 
     // data list to update to UI
-    public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+    public ObservableCollection<UserDesc> UserItems { get; private set; } = new ObservableCollection<UserDesc>();
 
     // get data at ctor
-    public UserViewModel(ISampleDataService sampleDataService)
+    public UserViewModel(IUserService userService, IOrderService orderService)
     {
-        _sampleDataService = sampleDataService;
+        _userService = userService;
+        _orderService = orderService;
     }
 
     // navigate to get data, using async way
     public async void OnNavigatedTo(object parameter)
     {
-        SampleItems.Clear();
+        UserItems.Clear();
 
         // need to get real data
-        var data = await _sampleDataService.GetListDetailsDataAsync();
+        var users = await _userService.GetUsers();
 
-        foreach (var item in data)
+        foreach (var user in users)
         {
-            SampleItems.Add(item);
+            var orders = await _orderService.GetOrdersById(user.Id);
+            UserItems.Add(new UserDesc(user, orders.ToArray()));
         }
     }
 
@@ -45,6 +48,6 @@ public partial class UserViewModel : ObservableRecipient, INavigationAware
 
     public void EnsureItemSelected()
     {
-        Selected ??= SampleItems.First();
+        Selected ??= UserItems.FirstOrDefault();
     }
 }
