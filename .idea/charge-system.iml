@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CPP_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/client/charge-app.Core/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/client/charge-app.Core/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/client/charge-app.Tests.MSTest/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/client/charge-app.Tests.MSTest/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/client/charge-app/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/client/charge-app/.vs" />
+      <excludeFolder url="file://$MODULE_DIR$/client/charge-app/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/client/charge-app/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/server/cmake-build-debug" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
