@@ -1,9 +1,6 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
-#include "server/Server.h"
-#include "client/UserClient.h"
-#include "client/AdminClient.h"
 #include "util/HttpServer.h"
 
 using namespace std;
