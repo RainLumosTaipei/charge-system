@@ -1,0 +1,86 @@
+﻿  AdminClient.cpp
+D:\数据资源\git-jb\charge-system\server\client\AdminClient.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“client/AdminClient.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\server\Server.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“client/AdminClient.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\ChargingPile.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“client/AdminClient.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\Vehicle.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“client/AdminClient.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\WaitingArea.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“client/AdminClient.cpp”)
+  
+  UserClient.cpp
+D:\数据资源\git-jb\charge-system\server\client\UserClient.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“client/UserClient.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\server\Server.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“client/UserClient.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\ChargingPile.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“client/UserClient.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\Vehicle.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“client/UserClient.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\WaitingArea.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“client/UserClient.cpp”)
+  
+  ChargingPile.cpp
+D:\数据资源\git-jb\charge-system\server\entity\ChargingPile.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\数据资源\git-jb\charge-system\server\entity\ChargingPile.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“entity/ChargingPile.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\Vehicle.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“entity/ChargingPile.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\ChargingPile.cpp(17,23): warning C4244: “=”: 从“double”转换到“time_t”，可能丢失数据
+  Vehicle.cpp
+D:\数据资源\git-jb\charge-system\server\entity\Vehicle.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“entity/Vehicle.cpp”)
+  
+  WaitingArea.cpp
+D:\数据资源\git-jb\charge-system\server\entity\WaitingArea.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“entity/WaitingArea.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\Vehicle.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“entity/WaitingArea.cpp”)
+  
+  Server.cpp
+D:\数据资源\git-jb\charge-system\server\server\Server.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\数据资源\git-jb\charge-system\server\server\Server.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“server/Server.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\ChargingPile.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“server/Server.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\Vehicle.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“server/Server.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\WaitingArea.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“server/Server.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\server\Server.cpp(19,33): warning C4244: “初始化”: 从“time_t”转换到“double”，可能丢失数据
+D:\数据资源\git-jb\charge-system\server\server\Server.cpp(65,29): warning C4244: “初始化”: 从“time_t”转换到“double”，可能丢失数据
+  HttpServer.cpp
+D:\数据资源\git-jb\charge-system\server\client\UserClient.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“util/HttpServer.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\server\Server.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“util/HttpServer.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\ChargingPile.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“util/HttpServer.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\Vehicle.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“util/HttpServer.cpp”)
+  
+D:\数据资源\git-jb\charge-system\server\entity\WaitingArea.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“util/HttpServer.cpp”)
+  
+  正在生成代码...
+  server.vcxproj -> D:\数据资源\git-jb\charge-system\server\x64\Debug\server.exe
