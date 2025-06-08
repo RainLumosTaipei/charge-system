@@ -44,7 +44,7 @@
                     <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
                         <TextBlock Margin="0,0,4,0" Text="请求电量 :" />
                         <TextBlock Text="{x:Bind TextReqPower}" />
-                        <TextBlock Margin="104,0,4,0" Text="充电时长 :" />
+                        <TextBlock Margin="108,0,4,0" Text="充电时长 :" />
                         <TextBlock Text="{x:Bind TextChargeTime}" />
                     </StackPanel>
                     <StackPanel Margin="0,2,0,0" Orientation="Horizontal">
@@ -76,7 +76,6 @@
                         <TextBlock
                             Margin="0,0,4,0"
                             FontSize="12"
-                            FontWeight="SemiBold"
                             Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
                             Text="电费:" />
                         <TextBlock
@@ -92,7 +91,6 @@
                         <TextBlock
                             Margin="0,0,4,0"
                             FontSize="12"
-                            FontWeight="SemiBold"
                             Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
                             Text="服务费:" />
                         <TextBlock
@@ -111,7 +109,7 @@
         HorizontalAlignment="Stretch"
         IsTabStop="True"
         VerticalScrollMode="Enabled">
-        <StackPanel Margin="24,16,0,0" HorizontalAlignment="Left">
+        <StackPanel Margin="24,16,0,64" HorizontalAlignment="Left">
             <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                 <FontIcon
                     HorizontalAlignment="Center"
@@ -128,7 +126,15 @@
             <StackPanel Padding="0,24,0,0">
 
                 <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="运行情况" />
+
                 <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextIsFaulty, Mode=OneWay}" />
+
+                <ToggleSwitch
+                    IsOn="True"
+                    OffContent="已停用"
+                    OnContent="已启用"
+                    Toggled="UpdatePileState"
+                    Tag="{Binding}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
@@ -156,10 +162,15 @@
 
                 <Button
                     Click="UpdatePileParameter"
+                    Margin="{StaticResource SmallTopMargin}"
                     Content="修改此配置"
-                    Style="{StaticResource AccentButton}"
-                    Tag="{Binding}" />
+                    Style="{StaticResource AccentButton}" />
             </StackPanel>
+
+            <TextBlock
+                Margin="{StaticResource LargeTopMargin}"
+                Style="{StaticResource DetailSubTitleStyle}"
+                Text="充电队列" />
 
             <ListView
                 x:Name="VehicleListView"

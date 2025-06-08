@@ -18,21 +18,16 @@ public sealed partial class ChargePileDialog : ContentDialog
         get;
     }
 
-    public ChargingPile Pile
-    {
-        get;
-    }
 
-    public ChargePileDialog(ChargingPile pile)
+    public ChargePileDialog()
     {
         InitializeComponent();
         ViewModel = App.GetService<ChargePileViewModel>();
-        Pile = pile;
     }
 
     private async void UpdatePileParameter(object sender, RoutedEventArgs e)
     {
-        var res = await ViewModel.UpdatePileParameter(Pile);
+        var res = await ViewModel.UpdatePileParameter();
         if (res)
         {
             var notification = new AppNotificationBuilder()
@@ -40,6 +35,7 @@ public sealed partial class ChargePileDialog : ContentDialog
                 .BuildNotification();
 
             AppNotificationManager.Default.Show(notification);
+            Hide();
         }
         else
         {
@@ -49,6 +45,11 @@ public sealed partial class ChargePileDialog : ContentDialog
 
             AppNotificationManager.Default.Show(notification);
         }
+
+    }
+
+    private void Cancel(object sender, RoutedEventArgs e)
+    {
         Hide();
     }
 }

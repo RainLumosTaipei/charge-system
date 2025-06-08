@@ -29,12 +29,15 @@ public:
 
     void addOrder(Order* order);
 
-    User(std::string name, std::string password);
+    const int getType();
+
+    User(std::string name, std::string password,int type);
 
 private:
     size_t id;
     std::string name;
     std::string password;
+    int type;
     std::vector<Order*> orders={};
 
     static size_t id_count;

@@ -38,6 +38,7 @@ public partial class UserViewModel : ObservableRecipient, INavigationAware
         foreach (var user in users)
         {
             var orders = await _orderService.GetOrdersById(user.Id);
+            orders ??= Enumerable.Empty<Order>();
             UserItems.Add(new UserDesc(user, orders.ToArray()));
         }
     }

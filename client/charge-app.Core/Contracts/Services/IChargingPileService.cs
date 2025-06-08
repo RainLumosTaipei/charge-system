@@ -8,4 +8,5 @@ public interface IChargingPileService
 {
     public Task<IEnumerable<ChargingPile>> GetPiles();
     public Task<bool> UpdatePileParameter(UpdatePileParameterReq req);
+    public Task<bool> UpdatePileState(UpdatePileStateReq req);
 }

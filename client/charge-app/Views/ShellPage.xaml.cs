@@ -34,6 +34,16 @@ public sealed partial class ShellPage : Page
         App.MainWindow.SetTitleBar(AppTitleBar);
         App.MainWindow.Activated += MainWindow_Activated;
         AppTitleBarText.Text = "AppDisplayName".GetLocalized();
+
+
+    }
+
+    public void UpdateNavigationLayout()
+    {
+        // 强制刷新所有绑定
+        NavigationViewControl.InvalidateMeasure();
+        NavigationViewControl.InvalidateArrange();
+        NavigationViewControl.UpdateLayout();
     }
 
     private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)

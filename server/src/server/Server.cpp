@@ -31,7 +31,6 @@ void Server::schedule() {
             if (selected) {
                 selected->addVehicle(*veh, now);
                 for (auto &user:*users)if (user.getUid()==veh->uid)user.addOrder(veh->order);
-                veh->order->setUid(100);
                 toRemove.push_back(veh);
             }
         }
@@ -46,7 +45,6 @@ void Server::schedule() {
 Server::Server(std::vector<User> &users,int fastNum, int trickleNum, int waitSize) :users(&users), waitingArea(waitSize) {
         for (int i = 0; i < fastNum; ++i) fastPiles.emplace_back(ChargingType::FAST, 30);
         for (int i = 0; i < trickleNum; ++i) tricklePiles.emplace_back(ChargingType::SLOW, 7);
-
 }
 
 void Server::handleFault(ChargingPile &pile) {
@@ -61,19 +59,46 @@ void Server::handleFault(ChargingPile &pile) {
         }
 }
 
+void Server::handleOpen(ChargingPile &pile) {
+    pile.isFaulty = false;
+
+    time_t now = time(nullptr);
+    std::vector<std::list<Vehicle>::iterator> toRemove;
+
+    for (auto& pile : fastPiles)pile.processCompletion(now);
+    for (auto& pile : tricklePiles)pile.processCompletion(now);
+
+    for (auto veh = waitingArea.vehicles.begin(); veh != waitingArea.vehicles.end(); ++veh) {
+        if (pile.type!=veh->mode||pile.isFaulty || !pile.hasSpace()) continue;
+
+        pile.addVehicle(*veh, now);
+        for (auto &user:*users)if (user.getUid()==veh->uid)user.addOrder(veh->order);
+        toRemove.push_back(veh);
+    }
+
+    // 移除已调度的车辆
+    for (auto& iter: toRemove) {
+        waitingArea.vehicles.erase(iter);
+    }
+}
+
 void Server::scheduleVehicle(Vehicle &veh, std::vector<ChargingPile> &piles) {
-            time_t now = time(nullptr);
+        time_t now = time(nullptr);
+        for (auto& pile : fastPiles)pile.processCompletion(now);
+        for (auto& pile : tricklePiles)pile.processCompletion(now);
         double minTime = DBL_MAX;
         ChargingPile* selected = nullptr;
+        veh.order->setEnd(now);
+        veh.chargeTime=(veh.end-veh.start)/3600;
         for (auto& p : piles) {
             if (p.isFaulty || !p.hasSpace()) continue;
             double waitTime = (p.queue.empty()) ? 0 : (p.queue.back().end - now);
             waitTime = std::max(waitTime, 0.0);
-            if (waitTime + veh.chargeTime < minTime) {
+            if (waitTime +veh.chargeTime  < minTime) {
                 minTime = waitTime + veh.chargeTime;
                 selected = &p;
             }
         }
         if (selected) selected->addVehicle(veh, now);
+        else waitingArea.vehicles.push_front(veh);
 }
-

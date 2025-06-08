@@ -6,8 +6,8 @@ public class User
 {
     public enum UserType
     {
-        User = 0,
-        Admin = 1,
+        Admin = 0,
+        User = 1,
     }
 
     public uint Id { get; set; }

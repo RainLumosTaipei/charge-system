@@ -36,4 +36,19 @@ public class ChargingPileService : IChargingPileService
             return false;
         }
     }
+
+    public async Task<bool> UpdatePileState(UpdatePileStateReq req)
+    {
+        try
+        {
+            var json = await HttpHelper.GetAsync("/pile/update/state?" + req);
+            var res = await JsonHelper.ToObjectAsync<DefaultRes>(json);
+            return res.Return;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"can't get users: {ex.Message}");
+            return false;
+        }
+    }
 }

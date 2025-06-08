@@ -35,6 +35,11 @@ private:
     // 计算电费（根据时间区间）
     void calculateBill(Vehicle& veh);
     static size_t id_count;
+public:
+    static double peekCost ;
+    static double shoulderCost;
+    static double valleyCost;
+
 };
 
 

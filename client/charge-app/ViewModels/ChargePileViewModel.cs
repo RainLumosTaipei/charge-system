@@ -8,10 +8,15 @@ public class ChargePileViewModel
 {
     private IChargingPileService _chargePileService;
     public UpdatePileParameterReq Req { get; set; }
-    public async Task<bool> UpdatePileParameter(ChargingPile pile)
+
+    public async Task<bool> UpdatePileParameter()
     {
-        Req.Id = pile.Id;
         return await _chargePileService.UpdatePileParameter(Req);
+    }
+
+    public async Task<bool> UpdatePileState(UpdatePileStateReq req)
+    {
+        return await _chargePileService.UpdatePileState(req);
     }
 
     public ChargePileViewModel(IChargingPileService chargePileService)

@@ -49,7 +49,7 @@ public class ChargingPile : INotifyPropertyChanged
     [JsonIgnore] public string TextTotalTime => $"{TotalTime:F2} 小时";
     [JsonIgnore] public string TextTotalPower => $"{ToTalPower:F2} 度";
     [JsonIgnore] public string TextIsFaulty => IsFaulty ? "故障" : "正常";
-    [JsonIgnore] public char Symbol  => IconHelper.RandomIcon();
+    [JsonIgnore] public char Symbol  => '\uEC3B';
     [JsonIgnore] public string SymbolName  => "ChargingPile";
 
 }

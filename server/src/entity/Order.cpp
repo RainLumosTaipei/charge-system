@@ -67,7 +67,7 @@ void from_json(const nlohmann::json &j, Order &o) {
     j.at("id").get_to(o.uid);
 }
 
-size_t Order::id_count = 0;
+size_t Order::id_count = 300000;
 
 Order::Order(size_t uid,double cost, time_t start, time_t end, ChargingType type)
 : id(id_count++),cost(cost), uid(uid), start(start), end(end), type(type){

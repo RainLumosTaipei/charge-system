@@ -27,6 +27,9 @@ public:
     // 故障处理：标记充电桩故障，重新调度队列车辆（优先级调度）
     void handleFault(ChargingPile& pile) ;
 
+    //启动充电桩之后，进行调度车辆
+    void handleOpen(ChargingPile& pile);
+
 private:
     // 辅助函数：调度单个车辆到目标桩集合
     void scheduleVehicle(Vehicle& veh, std::vector<ChargingPile>& piles);

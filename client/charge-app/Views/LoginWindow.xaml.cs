@@ -43,12 +43,25 @@ public sealed partial class LoginWindow : Window
     {
         var res = await ViewModel.LoginAsync();
 
-        if (res != -1)
+        if (res.Id != -1)
         {
-            UserDesc.Guid = (uint)res;
+            UserDesc.Guid = (uint)res.Id;
+            if (res.Type == User.UserType.Admin)
+            {
+                UserDesc.IsAdmin = true;
+                UserDesc.IsUser = false;
+            }
+            else
+            {
+                UserDesc.IsAdmin = false;
+                UserDesc.IsUser = true;
+            }
+
+
+            var type = res.Type == User.UserType.Admin ? "管理员" : "用户";
             var notification = new AppNotificationBuilder()
                 .AddText("登录成功")
-                .AddText("欢迎，" + ViewModel.Username)
+                .AddText("欢迎，" + type + ViewModel.Username)
                 .AddText("UID: "+ UserDesc.Guid)
                 .BuildNotification();
 

@@ -1,5 +1,6 @@
 using charge_app.Core.Contracts.Services;
 using charge_app.Core.Reqs;
+using charge_app.Core.Res;
 
 namespace charge_app.ViewModels;
 
@@ -26,10 +27,10 @@ public class LoginViewModel
     }
 
 
-    public async Task<int> LoginAsync()
+    public async Task<LoginRes> LoginAsync()
     {
         var req = new LoginReq(Username, Password);
         var res =  await _userService.Login(req);
-        return res.Id;
+        return res;
     }
 }

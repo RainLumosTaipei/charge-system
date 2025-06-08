@@ -44,17 +44,17 @@ bool UserClient::modifyPower(size_t queueNum, double newPower) {
 }
 
 void UserClient::cancelCharge(size_t queueNum, bool isInCharging) {
-//        for (auto req = myRequests.begin(); req != myRequests.end(); ++req) {
-//            if (req->queueId == queueNum) {
-//                if (server.waitingArea.cancelCharge(req, isInCharging)) {
-//                    cout << "cancel success" << endl;
-//                } else {
-//                    cout << "cancel failed" << endl;
-//                }
-//                myRequests.erase(req);
-//                return;
-//            }
-//        }
-//        cout << "can not find id" << endl;
+    for (auto req = myRequests.begin(); req != myRequests.end(); ++req) {
+        if (req->queueId == queueNum) {
+            if (server.waitingArea.cancelCharge(req, isInCharging)) {
+                cout << "cancel success" << endl;
+            } else {
+                cout << "cancel failed" << endl;
+            }
+            myRequests.erase(req);
+            return ;
+        }
+    }
+    cout << "can not find id" << endl;
 }
 

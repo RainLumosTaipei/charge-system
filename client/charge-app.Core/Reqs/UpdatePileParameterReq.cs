@@ -2,6 +2,8 @@ namespace charge_app.Core.Reqs;
 
 public class UpdatePileParameterReq
 {
-    public double Cost { get; set; }
-    public uint Id { get; set; }
+    public double PeekCost { get; set; }
+    public double ShoulderCost { get; set; }
+    public double ValleyCost { get; set; }
+
 }

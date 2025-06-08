@@ -1,5 +1,6 @@
 using charge_app.Core.Contracts.Services;
 using charge_app.Core.Reqs;
+using charge_app.Core.Res;
 
 namespace charge_app.ViewModels;
 
@@ -25,10 +26,10 @@ public class RegisterViewModel
     }
 
 
-    public async Task<int> RegisterAsync()
+    public async Task<RegisterRes> RegisterAsync()
     {
         var req = new RegisterReq(Username, Password);
         var res =  await _userService.Register(req);
-        return res.Id;
+        return res;
     }
 }

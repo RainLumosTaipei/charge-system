@@ -9,75 +9,74 @@
     CornerRadius="12"
     mc:Ignorable="d">
 
-    <StackPanel 
-        VerticalAlignment="Stretch" 
-        Margin="0 32 0 16"
-        HorizontalAlignment="Stretch">
+    <StackPanel
+        Margin="0,32,0,16"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-            <TextBlock 
-                Text="峰时定价（元/度）:" 
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+            <TextBlock
+                Margin="0,0,8,0"
                 VerticalAlignment="Center"
                 FontSize="16"
-                Margin="0 0 8 0"/>
+                Text="峰时定价（元/度）:" />
             <TextBox
                 x:Name="InputTextBox"
                 MinWidth="200"
                 HorizontalAlignment="Stretch"
                 PlaceholderText="请输入内容"
-                Text="{x:Bind ViewModel.Req.Cost, Mode=TwoWay}" />
+                Text="{x:Bind ViewModel.Req.PeekCost, Mode=TwoWay}" />
         </StackPanel>
 
-        <StackPanel 
-            Orientation="Horizontal" 
-            Margin="0 16 0 0"
-            HorizontalAlignment="Stretch">
-            <TextBlock 
-                Text="谷时定价（元/度）:" 
+        <StackPanel
+            Margin="0,16,0,0"
+            HorizontalAlignment="Stretch"
+            Orientation="Horizontal">
+            <TextBlock
+                Margin="0,0,8,0"
                 VerticalAlignment="Center"
                 FontSize="16"
-                Margin="0 0 8 0"/>
+                Text="谷时定价（元/度）:" />
             <TextBox
                 MinWidth="200"
                 HorizontalAlignment="Stretch"
                 PlaceholderText="请输入内容"
-                Text="{x:Bind ViewModel.Req.Cost, Mode=TwoWay}" />
+                Text="{x:Bind ViewModel.Req.ValleyCost, Mode=TwoWay}" />
         </StackPanel>
 
-        <StackPanel Margin="0 16 0 0" 
-                    Orientation="Horizontal" 
-                    HorizontalAlignment="Stretch">
-            <TextBlock 
-                Text="平时定价（元/度）:" 
+        <StackPanel
+            Margin="0,16,0,0"
+            HorizontalAlignment="Stretch"
+            Orientation="Horizontal">
+            <TextBlock
+                Margin="0,0,8,0"
                 VerticalAlignment="Center"
                 FontSize="16"
-                Margin="0 0 8 0"/>
+                Text="平时定价（元/度）:" />
             <TextBox
                 MinWidth="200"
                 HorizontalAlignment="Stretch"
                 PlaceholderText="请输入内容"
-                Text="{x:Bind ViewModel.Req.Cost, Mode=TwoWay}" />
+                Text="{x:Bind ViewModel.Req.ShoulderCost, Mode=TwoWay}" />
         </StackPanel>
 
-        <Grid 
-              HorizontalAlignment="Stretch"
-              Margin="0 48 0 0">
+        <Grid Margin="0,48,0,0" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
             <Button
                 Grid.Column="0"
+                Margin="0,0,8,0"
                 Click="UpdatePileParameter"
-                Content="发送请求"
-                Margin="0 0 8 0"
+                Content="确定"
                 Style="{StaticResource AccentButton}" />
 
             <Button
                 Grid.Column="1"
-                Click="UpdatePileParameter"
-                Margin="8 0 0 0"
+                Margin="8,0,0,0"
+                Click="Cancel"
                 Content="取消" />
         </Grid>
 

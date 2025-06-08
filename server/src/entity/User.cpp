@@ -5,10 +5,10 @@
 #include "entity/User.h"
 #include "util/JsonHelper.h"
 
-size_t User::id_count = 0;
+size_t User::id_count = 100000;
 
-User::User(std::string name, std::string password)
-        : id(id_count++), name(std::move(name)), password(std::move(password)) {}
+User::User(std::string name, std::string password,int type)
+        : id(id_count++), name(std::move(name)), password(std::move(password)),type(type) {}
 
 const std::string &User::getName() const {
     return name;
@@ -40,6 +40,10 @@ void User::addOrder(Order* order) {
 
 const size_t User::getUid() const{
     return id;
+}
+
+const int User::getType(){
+    return type;
 }
 
 void to_json(nlohmann::json& j, const User& u) {

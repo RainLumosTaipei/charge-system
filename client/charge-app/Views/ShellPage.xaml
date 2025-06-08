@@ -7,6 +7,7 @@
     xmlns:helpers="using:charge_app.Helpers"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:charge_app.Core.Models"
     Loaded="OnLoaded">
 
     <Grid>
@@ -46,26 +47,40 @@
                 TODO: Update item icons by updating FontIcon.Glyph properties.
                 https://docs.microsoft.com/windows/apps/design/style/segoe-fluent-icons-font#icon-list
                 -->
-                <NavigationViewItem x:Uid="Shell_Main" helpers:NavigationHelper.NavigateTo="charge_app.ViewModels.MainViewModel">
+                <NavigationViewItem
+                    x:Uid="Shell_Main"
+                    helpers:NavigationHelper.NavigateTo="charge_app.ViewModels.MainViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe80f;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_User" helpers:NavigationHelper.NavigateTo="charge_app.ViewModels.UserViewModel">
+
+                <NavigationViewItem
+                    x:Uid="Shell_User"
+
+                    helpers:NavigationHelper.NavigateTo="charge_app.ViewModels.UserViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe77b;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_Park" helpers:NavigationHelper.NavigateTo="charge_app.ViewModels.ParkViewModel">
+
+                <NavigationViewItem
+                    x:Uid="Shell_Park"
+
+                    helpers:NavigationHelper.NavigateTo="charge_app.ViewModels.ParkViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe804;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_Order" helpers:NavigationHelper.NavigateTo="charge_app.ViewModels.OrderViewModel">
+
+                <NavigationViewItem
+                    x:Uid="Shell_Order"
+                    helpers:NavigationHelper.NavigateTo="charge_app.ViewModels.OrderViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7bf;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+
             </NavigationView.MenuItems>
 
             <NavigationView.HeaderTemplate>
