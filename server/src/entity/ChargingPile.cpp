@@ -2,7 +2,7 @@
 // Created by zhou_zhengming on 2025/6/5.
 //
 #define _CRT_SECURE_NO_WARNINGS 1
-#include <ctime>
+#include "util/TimeHelper.h"
 #include "entity/ChargingPile.h"
 
 size_t ChargingPile::id_count = 200000;
@@ -51,8 +51,8 @@ void ChargingPile::processCompletion(time_t now) {
 
 void ChargingPile::calculateBill(Vehicle &veh) {
     struct tm tmStart, tmEnd;
-    localtime_s(&tmStart, &veh.start); // 获取开始时间
-    localtime_s(&tmEnd, &veh.end);     // 获取结束时间
+    localtime_u(&tmStart, &veh.start); // 获取开始时间
+    localtime_u(&tmEnd, &veh.end);     // 获取结束时间
 
     double peak = 0, flat = 0, valley = 0; // 分别统计峰时、平时、谷时的电量
 
@@ -66,7 +66,7 @@ void ChargingPile::calculateBill(Vehicle &veh) {
 
         //计算当前这个小时的用电费用
         struct tm tmCurrent;//临时变量
-        localtime_s(&tmCurrent, &currentTime);//每个小时算一次电费
+        localtime_u(&tmCurrent, &currentTime);//每个小时算一次电费
         int currentHour = tmCurrent.tm_hour;
         // 峰时（10-15, 18-21）
         if ((currentHour >= 10 && currentHour < 15) || (currentHour >= 18 && currentHour < 21)) {
