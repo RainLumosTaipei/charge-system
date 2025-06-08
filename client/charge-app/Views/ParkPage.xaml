@@ -28,7 +28,7 @@
                     Grid.Column="1"
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center">
-                    <TextBlock Style="{StaticResource ListTitleStyle}" Text="{x:Bind Id}" />
+                    <TextBlock Style="{StaticResource ListTitleStyle}" Text="{x:Bind TextId}" />
                     <TextBlock Style="{StaticResource ListSubTitleStyle}" Text="{x:Bind TextIsFaulty}" />
                 </StackPanel>
             </Grid>

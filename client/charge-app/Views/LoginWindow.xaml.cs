@@ -45,9 +45,9 @@ public sealed partial class LoginWindow : Window
         if (res != -1)
         {
             UserDesc.Guid = (uint)res;
-            AppNotification notification = new AppNotificationBuilder()
+            var notification = new AppNotificationBuilder()
                 .AddText("登录成功")
-                .AddText("Explore interactive samples and discover the power of modern Windows UI.")
+                .AddText("欢迎，" + ViewModel.Username)
                 .BuildNotification();
 
             AppNotificationManager.Default.Show(notification);
@@ -55,9 +55,9 @@ public sealed partial class LoginWindow : Window
         }
         else
         {
-            AppNotification notification = new AppNotificationBuilder()
+            var notification = new AppNotificationBuilder()
                 .AddText("登录失败")
-                .AddText("Explore interactive samples and discover the power of modern Windows UI.")
+                .AddText("用户名或密码有误")
                 .BuildNotification();
 
             AppNotificationManager.Default.Show(notification);

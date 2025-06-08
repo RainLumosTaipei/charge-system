@@ -16,11 +16,12 @@ public class Vehicle
     public double TotalFee { get; set; }
 
     [JsonIgnore] public string TextType => Type == ChargingPile.ChargingPileType.Fast ? "快充" : "慢充";
-    [JsonIgnore] public string TextElecFee => $"{ElecFee:F2}元";
-    [JsonIgnore] public string TextServFee => $"{ServFee:F2}元";
-    [JsonIgnore] public string TextTotalFee => $"{TotalFee:F2}元";
-    [JsonIgnore] public string TextChargeTime => $"{ChargeTime:F2}小时";
-    [JsonIgnore] public string TextReqPower => $"{ReqPower:F2}度";
+    [JsonIgnore] public string TextElecFee => $"{ElecFee:F2} 元";
+    [JsonIgnore] public string TextQueueId => $"队列编号 {QueueId}";
+    [JsonIgnore] public string TextServFee => $"{ServFee:F2} 元";
+    [JsonIgnore] public string TextTotalFee => $"{TotalFee:F2} 元";
+    [JsonIgnore] public string TextChargeTime => $"{ChargeTime:F2} 小时";
+    [JsonIgnore] public string TextReqPower => $"{ReqPower:F2} 度";
     [JsonIgnore] public string TextStart => TimeHelper.ConvertTime(Start);
     [JsonIgnore] public string TextEnd => TimeHelper.ConvertTime(End);
 

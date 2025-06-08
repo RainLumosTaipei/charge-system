@@ -36,9 +36,8 @@ public sealed partial class RegisterWindow : Window
         this.InitializeComponent();
         ViewModel= App.GetService<RegisterViewModel>();
         AppWindow.Title = "注册";
-        AppWindow.Resize(new Windows.Graphics.SizeInt32(600, 800));
+        AppWindow.Resize(new Windows.Graphics.SizeInt32(600, 400));
         AppWindow.Move(new Windows.Graphics.PointInt32(800, 400));
-
         AppWindow.TitleBar.BackgroundColor = Microsoft.UI.Colors.Black;
         AppWindow.TitleBar.ForegroundColor = Microsoft.UI.Colors.White;
         AppWindow.TitleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Black;
@@ -56,9 +55,9 @@ public sealed partial class RegisterWindow : Window
         if (res != -1)
         {
             UserDesc.Guid = (uint)res;
-            AppNotification notification = new AppNotificationBuilder()
+            var notification = new AppNotificationBuilder()
                 .AddText("注册成功")
-                .AddText("Explore interactive samples and discover the power of modern Windows UI.")
+                .AddText("欢迎，" + ViewModel.Username)
                 .BuildNotification();
 
             AppNotificationManager.Default.Show(notification);
@@ -67,9 +66,9 @@ public sealed partial class RegisterWindow : Window
         else
         {
 
-            AppNotification notification = new AppNotificationBuilder()
+            var notification = new AppNotificationBuilder()
                 .AddText("注册失败")
-                .AddText("Explore interactive samples and discover the power of modern Windows UI.")
+                .AddText("抱歉，我们的服务出现了问题")
                 .BuildNotification();
 
             AppNotificationManager.Default.Show(notification);
