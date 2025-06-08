@@ -9,7 +9,7 @@ public class OrderService : IOrderService
     {
         try
         {
-            var json = await HttpHelper.GetAsync("/order?" + id);
+            var json = await HttpHelper.GetAsync("/order?id=" + id);
             var orders = await JsonHelper.ToObjectAsync<Order[]>(json);
             return orders;
         }

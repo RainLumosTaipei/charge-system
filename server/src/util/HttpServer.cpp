@@ -47,7 +47,7 @@ void HttpServer::start() {
                 break;
             }
         }
-        printf("%s\n",j.dump().c_str());
+        cout << j.dump() << endl;
         res.set_content(j.dump(), "application/json");
     });
 
@@ -159,6 +159,7 @@ void HttpServer::start() {
                 j = user.getOrders();
             }
         }
+        cout << j.dump() << endl;
         res.set_content(j.dump(), "application/json");
     });
 

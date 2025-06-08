@@ -23,6 +23,7 @@ public class UserDesc
 
 
     [JsonIgnore] public string TextId => $"uid: {Id}";
+    [JsonIgnore] public string TextType => Type == User.UserType.User ? "用户" : "管理员";
 
     [JsonIgnore] public char Symbol => IconHelper.RandomIcon();
 

@@ -37,7 +37,7 @@ void ChargingPile::processCompletion(time_t now) {
             calculateBill(v);
             v.end=tmp;
             newQueue.push_back(v);
-            v.updateOrder();
+            //v.updateOrder();
         } // 未完成，保留
         else {
             calculateBill(v);

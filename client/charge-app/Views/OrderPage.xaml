@@ -10,6 +10,7 @@
     xmlns:behaviors="using:charge_app.Behaviors"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
+
     <Page.Resources>
         <DataTemplate x:Key="ItemTemplate" x:DataType="models:Order">
             <Grid Height="60">
@@ -27,7 +28,7 @@
                     Grid.Column="1"
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center">
-                    <TextBlock Text="{x:Bind Id}" Style="{StaticResource ListTitleStyle}" />
+                    <TextBlock Text="{x:Bind TextId}" Style="{StaticResource ListTitleStyle}" />
                     <TextBlock Text="{x:Bind TextType}" Style="{StaticResource ListSubTitleStyle}" />
                 </StackPanel>
             </Grid>
@@ -74,7 +75,6 @@
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <!--641 is the default CompactModeThresholdWidth in NavigationView -->
                         <AdaptiveTrigger MinWindowWidth="641" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>

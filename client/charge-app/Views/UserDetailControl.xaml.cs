@@ -9,7 +9,7 @@ public sealed partial class UserDetailControl : UserControl
 {
 
     public static readonly DependencyProperty ListDetailsMenuItemProperty =
-        DependencyProperty.Register("ListDetailsMenuItem", typeof(UserDesc), typeof(UserDetailControl),
+        DependencyProperty.Register(nameof(ListDetailsMenuItem), typeof(UserDesc), typeof(UserDetailControl),
             new PropertyMetadata(null, OnListDetailsMenuItemPropertyChanged));
 
     // data

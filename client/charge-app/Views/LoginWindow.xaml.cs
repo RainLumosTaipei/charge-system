@@ -24,8 +24,9 @@ public sealed partial class LoginWindow : Window
 
 
         AppWindow.Title = "登录";
-        AppWindow.Resize(new Windows.Graphics.SizeInt32(600, 800));
-        AppWindow.Move(new Windows.Graphics.PointInt32(800, 400));
+        AppWindow.Resize(new Windows.Graphics.SizeInt32(600, 600));
+        AppWindow.Move(new Windows.Graphics.PointInt32(1200, 500));
+
 
         AppWindow.TitleBar.BackgroundColor = Microsoft.UI.Colors.Black;
         AppWindow.TitleBar.ForegroundColor = Microsoft.UI.Colors.White;
@@ -40,7 +41,7 @@ public sealed partial class LoginWindow : Window
     // 处理登录逻辑
     private async void Login(object sender, RoutedEventArgs e)
     {
-        int res = await ViewModel.LoginAsync();
+        var res = await ViewModel.LoginAsync();
 
         if (res != -1)
         {
@@ -48,6 +49,7 @@ public sealed partial class LoginWindow : Window
             var notification = new AppNotificationBuilder()
                 .AddText("登录成功")
                 .AddText("欢迎，" + ViewModel.Username)
+                .AddText("UID: "+ UserDesc.Guid)
                 .BuildNotification();
 
             AppNotificationManager.Default.Show(notification);

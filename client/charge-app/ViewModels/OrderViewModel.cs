@@ -13,7 +13,7 @@ public partial class OrderViewModel : ObservableRecipient, INavigationAware
     [ObservableProperty]
     private Order? selected;
 
-    public ObservableCollection<Order> OrderItems { get; private set; } = new ObservableCollection<Order>();
+    public ObservableCollection<Order> OrderItems { get; private set; } = new ();
 
     public OrderViewModel(IOrderService orderService)
     {
