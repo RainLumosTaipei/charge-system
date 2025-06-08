@@ -32,18 +32,18 @@
                     Margin="{StaticResource SmallTopMargin}"
                     Text="充电开始时间"
                     Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.Start, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextStart, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Text="充电结束时间"
                     Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.End, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextEnd, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Text="费用"
                     Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.Cost, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextCost, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
            </StackPanel>
         </StackPanel>

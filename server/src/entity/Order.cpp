@@ -64,7 +64,7 @@ void to_json(nlohmann::json &j, const Order &o) {
 
 void from_json(const nlohmann::json &j, Order &o) {
     j.at("id").get_to(o.id);
-    j.at("uid").get_to(o.uid);
+    j.at("id").get_to(o.uid);
 }
 
 size_t Order::id_count = 0;

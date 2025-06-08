@@ -8,7 +8,7 @@
 size_t User::id_count = 0;
 
 User::User(std::string name, std::string password)
-        : uid(id_count++), name(std::move(name)), password(std::move(password)) {}
+        : id(id_count++), name(std::move(name)), password(std::move(password)) {}
 
 const std::string &User::getName() const {
     return name;
@@ -39,11 +39,11 @@ void User::addOrder(const Order &order) {
 }
 
 const size_t User::getUid() const{
-    return uid;
+    return id;
 }
 
 void to_json(nlohmann::json& j, const User& u) {
-    j["uid"]=u.getUid();
+    j["id"]=u.getUid();
     j["name"] = u.getName();
     j["password"] = u.getPassword();
     j["orders"] = u.getOrders();

@@ -4,7 +4,62 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:charge_app.Core.Models"
     mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="OrderItemTemplate" x:DataType="models:Order">
+            <Grid Padding="8 12"  Background="{ThemeResource ListViewItemBackground}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- 左侧图标区域 -->
+                <StackPanel
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0,0,24,0">
+                    <FontIcon Glyph="&#xE7BF;"
+                              FontSize="40"
+                              Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                    <TextBlock Text="{x:Bind TextType}"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Margin="0 8 0 0"
+                               HorizontalAlignment="Center"
+                               Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                </StackPanel>
+
+                <!-- 中间内容区域 -->
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{x:Bind TextId}" FontSize="16" FontWeight="SemiBold" />
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0,6,0,0">
+                        <TextBlock Text="开始时间 :" Margin="0,0,4,0" />
+                        <TextBlock
+                            Text="{x:Bind TextStart}" />
+                        <TextBlock Text="结束时间 :" Margin="32,0,4,0" />
+                        <TextBlock Text="{x:Bind TextEnd}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" HorizontalAlignment="Right" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="总金额:"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,4,0"/>
+                        <TextBlock Text="{x:Bind TextCost}"
+                                   FontSize="16" FontWeight="Bold"
+                                   Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
 
     <ScrollViewer
         Name="ForegroundElement"
@@ -39,6 +94,15 @@
 
 
             </StackPanel>
+
+            <ListView
+                x:Name="OrderListView"
+                ItemsSource="{x:Bind ListDetailsMenuItem.Orders}"
+                ItemTemplate="{StaticResource OrderItemTemplate}"
+                SelectionMode="Single"
+                MinWidth="800"
+                Margin="-12,12, 0 ,0"/>
+
         </StackPanel>
     </ScrollViewer>
 </UserControl>

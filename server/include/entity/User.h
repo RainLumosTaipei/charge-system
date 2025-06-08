@@ -32,7 +32,7 @@ public:
     User(std::string name, std::string password);
 
 private:
-    size_t uid;
+    size_t id;
     std::string name;
     std::string password;
     std::vector<Order> orders;

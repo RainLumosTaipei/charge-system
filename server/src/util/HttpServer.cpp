@@ -38,12 +38,12 @@ void HttpServer::start() {
         ++message;
         string password = message->second;
         nlohmann::json j;
-        j["uid"]=-1;
+        j["id"]=-1;
         for (int i=0;i<users.size();++i)
         {
             if (users.at(i).getName()==user_name)
             {
-                if (users.at(i).getPassword()==password)j["uid"]=users.at(i).getUid();
+                if (users.at(i).getPassword()==password)j["id"]=users.at(i).getUid();
                 break;
             }
         }
@@ -67,12 +67,12 @@ void HttpServer::start() {
             }
         }
         nlohmann::json j;
-        if (same_flag) j["uid"]=-1;
+        if (same_flag) j["id"]=-1;
         else
         {
             User tmp=User(user_name,password);
            users.push_back(tmp);
-           j["uid"]=tmp.getUid();
+           j["id"]=tmp.getUid();
         }
         printf("%s\n",j.dump().c_str());
         res.set_content(j.dump(), "application/json");
@@ -150,13 +150,13 @@ void HttpServer::start() {
         res.set_content(j.dump(), "application/json");
     });
 
-    server.Post("/user/getBill",[&](const httplib::Request & req, httplib::Response &res) {
-        nlohmann::json body=nlohmann::json::parse(req.body);
-        int uid = body["uid"];
+    server.Get("/order",[&](const httplib::Request & req, httplib::Response &res) {
+        auto message = req.params.begin();
+        int uid=stoi(message->second);
         nlohmann::json j;
         for (auto &user:users) {
             if (user.getUid()==uid) {
-                j["bills"]=user.getOrders();
+                j = user.getOrders();
             }
         }
         res.set_content(j.dump(), "application/json");

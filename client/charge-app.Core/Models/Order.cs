@@ -16,9 +16,9 @@ public class Order
     [JsonIgnore] public string TextType => Type == ChargingPile.ChargingPileType.Fast ? "快充" : "慢充";
     [JsonIgnore] public string TextStart => TimeHelper.ConvertTime(Start);
     [JsonIgnore] public string TextEnd => TimeHelper.ConvertTime(End);
-    [JsonIgnore] public string TextCost => $"${Cost:F2}元";
+    [JsonIgnore] public string TextCost => $"{Cost:F2} 元";
+    [JsonIgnore] public string TextId => $"订单号 {Id}";
     [JsonIgnore] public char Symbol => IconHelper.RandomIcon();
-
     [JsonIgnore] public string SymbolName => "Order";
 
 
