@@ -150,7 +150,17 @@ void HttpServer::start() {
         res.set_content(j.dump(), "application/json");
     });
 
-
+    server.Post("/user/getBill",[&](const httplib::Request & req, httplib::Response &res) {
+        nlohmann::json body=nlohmann::json::parse(req.body);
+        int uid = body["uid"];
+        nlohmann::json j;
+        for (auto &user:users) {
+            if (user.getUid()==uid) {
+                j["bills"]=user.getOrders();
+            }
+        }
+        res.set_content(j.dump(), "application/json");
+    });
     
     server.listen("0.0.0.0", 8080);
 }

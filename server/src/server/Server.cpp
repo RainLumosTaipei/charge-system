@@ -27,9 +27,9 @@ void Server::schedule() {
 
             if (selected) {
                 selected->addVehicle(*veh, now);
-                for (auto &user:users){
+                for (auto &user:*users){
                     if (user.getUid()==veh->uid){
-                        Order* tmp=new Order(user.getUid(),veh->start,veh->end,veh->mode);
+                        Order* tmp=new Order(user.getUid(),veh->totalFee,veh->start,veh->end,veh->mode);
                         user.addOrder(*tmp);
                     }
                 }
@@ -44,7 +44,7 @@ void Server::schedule() {
 
 }
 
-Server::Server(std::vector<User> &users,int fastNum, int trickleNum, int waitSize) :users(users), waitingArea(waitSize) {
+Server::Server(std::vector<User> &users,int fastNum, int trickleNum, int waitSize) :users(&users), waitingArea(waitSize) {
         for (int i = 0; i < fastNum; ++i) fastPiles.emplace_back(ChargingType::FAST, 30);
         for (int i = 0; i < trickleNum; ++i) tricklePiles.emplace_back(ChargingType::SLOW, 7);
 

@@ -56,6 +56,10 @@ void Order::setType(ChargingType type) {
 void to_json(nlohmann::json &j, const Order &o) {
     j["id"] = o.getId();
     j["uid"] = o.getUid();
+    j["cost"] = o.getCost();
+    j["start"] = o.getStart();
+    j["end"] = o.getEnd();
+    j["type"] = o.getType();
 }
 
 void from_json(const nlohmann::json &j, Order &o) {
@@ -65,7 +69,7 @@ void from_json(const nlohmann::json &j, Order &o) {
 
 size_t Order::id_count = 0;
 
-Order::Order(size_t uid, time_t start, time_t end, ChargingType type)
-: id(id_count++), uid(uid), start(start), end(end), type(type){
+Order::Order(size_t uid,float cost, time_t start, time_t end, ChargingType type)
+: id(id_count++),cost(cost), uid(uid), start(start), end(end), type(type){
 
 }

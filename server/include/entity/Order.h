@@ -38,7 +38,7 @@ public:
 
     friend void from_json(const nlohmann::json& j, Order& o);
 
-    Order(size_t uid, time_t start, time_t end, ChargingType type);
+    Order(size_t uid,float cost, time_t start, time_t end, ChargingType type);
 
 private:
     size_t id;

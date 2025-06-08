@@ -14,7 +14,7 @@
 // 服务器端（调度、计费、故障处理）
 class Server {
 public:
-    std::vector<User> users;
+    std::vector<User> *users;
     std::vector<ChargingPile> fastPiles;   // 快充桩（默认2个）
     std::vector<ChargingPile> tricklePiles; // 慢充桩（默认3个）
     WaitingArea waitingArea;          // 等候区（容量6）
