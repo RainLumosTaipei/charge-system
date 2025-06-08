@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Window
     x:Class="charge_app.Views.LoginWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -12,43 +12,44 @@
     </Window.SystemBackdrop>
 
 
-    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <TextBlock
-            Margin="0 64 0 32"
-            VerticalAlignment="Center"
+            Margin="0,64,0,32"
             HorizontalAlignment="Center"
-            Text="登录到我们的应用"
-            Style="{ThemeResource TitleTextBlockStyle}" />
+            VerticalAlignment="Center"
+            Style="{ThemeResource TitleTextBlockStyle}"
+            Text="登录到我们的应用" />
 
 
-        <TextBox PlaceholderText="用户名"
-                 Margin="24 20 24 16"
-                 Text="{x:Bind ViewModel.Username, Mode=TwoWay}"/>
-        <PasswordBox PlaceholderText="密码"
-                     Margin="24 0 24 0"
-                     Password="{x:Bind ViewModel.Password, Mode=TwoWay}"/>
+        <TextBox
+            Margin="24,20,24,16"
+            PlaceholderText="用户名"
+            Text="{x:Bind ViewModel.Username, Mode=TwoWay}" />
+        <PasswordBox
+            Margin="24,0,24,0"
+            Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
+            PlaceholderText="密码" />
 
-        <Grid HorizontalAlignment="Stretch"
-              Margin="24 48 24 0">
+        <Grid Margin="24,48,24,0" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
             <Button
-                Content="登录"
-                Style="{StaticResource AccentButton}"
-                Click="Login"
                 Grid.Column="0"
+                Margin="0,0,8,0"
                 HorizontalAlignment="Stretch"
-                Margin="0 0 8 0" />
+                Click="Login"
+                Content="登录"
+                Style="{StaticResource AccentButton}" />
 
             <Button
-                Content="取消"
-                Click="Cancel"
-                HorizontalAlignment="Stretch"
                 Grid.Column="1"
-                Margin="8 0 0 0" />
+                Margin="8,0,0,0"
+                HorizontalAlignment="Stretch"
+                Click="Cancel"
+                Content="取消" />
         </Grid>
     </StackPanel>
 

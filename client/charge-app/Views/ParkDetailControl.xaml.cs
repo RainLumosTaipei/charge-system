@@ -29,4 +29,13 @@ public sealed partial class ParkDetailControl : UserControl
             control.ForegroundElement.ChangeView(0, 0, 1);
         }
     }
+
+    private async void UpdatePileParameter(object sender, RoutedEventArgs e)
+    {
+        var button = sender as Button;
+        var pile = button.Tag as ChargingPile;
+        var dialog = new ChargePileDialog(pile);
+        dialog.XamlRoot = this.XamlRoot;
+        await dialog.ShowAsync();
+    }
 }

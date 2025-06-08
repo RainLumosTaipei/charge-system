@@ -154,6 +154,11 @@
                     Text="总充电量" />
                 <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextTotalPower, Mode=OneWay}" />
 
+                <Button
+                    Click="UpdatePileParameter"
+                    Content="修改此配置"
+                    Style="{StaticResource AccentButton}"
+                    Tag="{Binding}" />
             </StackPanel>
 
             <ListView

@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 
 using charge_app.Contracts.ViewModels;
+using charge_app.Core.Contracts.Services;
 using charge_app.Core.Models;
 
 using CommunityToolkit.Mvvm.ComponentModel;

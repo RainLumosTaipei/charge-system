@@ -18,6 +18,7 @@
   <ItemGroup>
     <None Remove="Styles\Button.xaml" />
     <None Remove="Views\BlankPage1.xaml" />
+    <None Remove="Views\ChargePileDialog.xaml" />
     <None Remove="Views\RegisterDialog.xaml" />
     <None Remove="Views\UserControl1.xaml" />
   </ItemGroup>
@@ -42,6 +43,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\ChargePileDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Styles\Button.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

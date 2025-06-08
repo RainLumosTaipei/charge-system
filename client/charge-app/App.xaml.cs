@@ -76,6 +76,7 @@ public partial class App : Application
 
             // Views and ViewModels
             services.AddTransient<LoginViewModel>();
+            services.AddTransient<ChargePileViewModel>();
             services.AddTransient<RegisterViewModel>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();

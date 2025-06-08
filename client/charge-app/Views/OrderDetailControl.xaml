@@ -8,44 +8,44 @@
     <ScrollViewer
         Name="ForegroundElement"
         HorizontalAlignment="Stretch"
-        VerticalScrollMode="Enabled"
-        IsTabStop="True">
-        <StackPanel HorizontalAlignment="Left" Margin="24 12 0 0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+        IsTabStop="True"
+        VerticalScrollMode="Enabled">
+        <StackPanel Margin="24,12,0,0" HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                 <FontIcon
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
+                    AutomationProperties.Name="{x:Bind ListDetailsMenuItem.SymbolName, Mode=OneWay}"
                     FontSize="48"
-                    Glyph="{x:Bind ListDetailsMenuItem.Symbol, Mode=OneWay}"
-                    AutomationProperties.Name="{x:Bind ListDetailsMenuItem.SymbolName, Mode=OneWay}"  />
+                    Glyph="{x:Bind ListDetailsMenuItem.Symbol, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center"
-                    Text="{x:Bind ListDetailsMenuItem.TextType, Mode=OneWay}"
-                    Style="{ThemeResource TitleTextBlockStyle}" />
+                    Style="{ThemeResource TitleTextBlockStyle}"
+                    Text="{x:Bind ListDetailsMenuItem.TextType, Mode=OneWay}" />
             </StackPanel>
             <StackPanel Padding="0,16,0,0">
-                <TextBlock Text="账单编号" Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.Id, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="账单编号" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.Id, Mode=OneWay}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="充电开始时间"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextStart, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                    Style="{StaticResource DetailSubTitleStyle}"
+                    Text="充电开始时间" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextStart, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="充电结束时间"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextEnd, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                    Style="{StaticResource DetailSubTitleStyle}"
+                    Text="充电结束时间" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextEnd, Mode=OneWay}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="费用"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextCost, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                    Style="{StaticResource DetailSubTitleStyle}"
+                    Text="费用" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextCost, Mode=OneWay}" />
 
-           </StackPanel>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

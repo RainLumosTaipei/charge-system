@@ -9,52 +9,58 @@
 
     <UserControl.Resources>
         <DataTemplate x:Key="OrderItemTemplate" x:DataType="models:Order">
-            <Grid Padding="8 12"  Background="{ThemeResource ListViewItemBackground}">
+            <Grid Padding="8,12" Background="{ThemeResource ListViewItemBackground}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!-- 左侧图标区域 -->
+                <!--  左侧图标区域  -->
                 <StackPanel
-                    Orientation="Vertical"
+                    Margin="0,0,24,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Margin="0,0,24,0">
-                    <FontIcon Glyph="&#xE7BF;"
-                              FontSize="32"
-                              Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                    <TextBlock Text="{x:Bind TextType}"
-                               FontSize="14"
-                               FontWeight="SemiBold"
-                               Margin="0 8 0 0"
-                               HorizontalAlignment="Center"
-                               Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                    Orientation="Vertical">
+                    <FontIcon
+                        FontSize="32"
+                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                        Glyph="&#xE7BF;" />
+                    <TextBlock
+                        Margin="0,8,0,0"
+                        HorizontalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                        Text="{x:Bind TextType}" />
                 </StackPanel>
 
-                <!-- 中间内容区域 -->
+                <!--  中间内容区域  -->
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{x:Bind TextId}" FontSize="16" FontWeight="SemiBold" />
-                    <StackPanel Orientation="Horizontal" 
-                                Margin="0,6,0,0">
-                        <TextBlock Text="开始时间 :" Margin="0,0,4,0" />
-                        <TextBlock
-                            Text="{x:Bind TextStart}" />
-                        <TextBlock Text="结束时间 :" Margin="32,0,4,0" />
+                    <TextBlock
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Text="{x:Bind TextId}" />
+                    <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
+                        <TextBlock Margin="0,0,4,0" Text="开始时间 :" />
+                        <TextBlock Text="{x:Bind TextStart}" />
+                        <TextBlock Margin="32,0,4,0" Text="结束时间 :" />
                         <TextBlock Text="{x:Bind TextEnd}" />
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2" HorizontalAlignment="Right" >
+                <StackPanel Grid.Column="2" HorizontalAlignment="Right">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="总金额:"
-                                   FontSize="16"
-                                   FontWeight="SemiBold"
-                                   Margin="0,0,4,0"/>
-                        <TextBlock Text="{x:Bind TextCost}"
-                                   FontSize="16" FontWeight="Bold"
-                                   Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                        <TextBlock
+                            Margin="0,0,4,0"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="总金额:" />
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                            Text="{x:Bind TextCost}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -64,10 +70,10 @@
     <ScrollViewer
         Name="ForegroundElement"
         HorizontalAlignment="Stretch"
-        VerticalScrollMode="Enabled"
-        IsTabStop="True">
-        <StackPanel HorizontalAlignment="Left" Margin="24 12 0 0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+        IsTabStop="True"
+        VerticalScrollMode="Enabled">
+        <StackPanel Margin="24,12,0,0" HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                 <FontIcon
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -76,31 +82,31 @@
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center"
-                    Text="{x:Bind ListDetailsMenuItem.Name, Mode=OneWay}"
-                    Style="{ThemeResource TitleTextBlockStyle}" />
+                    Style="{ThemeResource TitleTextBlockStyle}"
+                    Text="{x:Bind ListDetailsMenuItem.Name, Mode=OneWay}" />
             </StackPanel>
 
             <StackPanel Padding="0,15,0,0">
-                <TextBlock Text="权限" Style="{StaticResource DetailSubTitleStyle}" />
+                <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="权限" />
 
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextType, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextType, Mode=OneWay}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="用户标识符"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextId, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                    Style="{StaticResource DetailSubTitleStyle}"
+                    Text="用户标识符" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextId, Mode=OneWay}" />
 
 
             </StackPanel>
 
             <ListView
                 x:Name="OrderListView"
-                ItemsSource="{x:Bind ListDetailsMenuItem.Orders, Mode=OneWay}"
-                ItemTemplate="{StaticResource OrderItemTemplate}"
-                SelectionMode="Single"
                 MinWidth="800"
-                Margin="-12,12, 0 ,0"/>
+                Margin="-12,12,0,0"
+                ItemTemplate="{StaticResource OrderItemTemplate}"
+                ItemsSource="{x:Bind ListDetailsMenuItem.Orders, Mode=OneWay}"
+                SelectionMode="Single" />
 
         </StackPanel>
     </ScrollViewer>
