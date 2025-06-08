@@ -9,8 +9,8 @@ void Server::schedule() {
         time_t now = time(nullptr);
         std::vector<std::list<Vehicle>::iterator> toRemove;
 
-        for (auto& pile : fastPiles) pile.processCompletion(now);
-        for (auto& pile : tricklePiles) pile.processCompletion(now);
+        for (auto& pile : fastPiles)pile.processCompletion(now);
+        for (auto& pile : tricklePiles)pile.processCompletion(now);
 
         for (auto veh = waitingArea.vehicles.begin(); veh != waitingArea.vehicles.end(); ++veh) {
             std::vector<ChargingPile>& piles = (veh->mode == ChargingType::FAST) ? fastPiles : tricklePiles;
@@ -30,12 +30,8 @@ void Server::schedule() {
 
             if (selected) {
                 selected->addVehicle(*veh, now);
-                for (auto &user:*users){
-                    if (user.getUid()==veh->uid){
-                        veh->order=new Order(user.getUid(),veh->totalFee,veh->start,veh->end,veh->mode);
-                        user.addOrder(*veh->order);
-                    }
-                }
+                for (auto &user:*users)if (user.getUid()==veh->uid)user.addOrder(veh->order);
+                veh->order->setUid(100);
                 toRemove.push_back(veh);
             }
         }
