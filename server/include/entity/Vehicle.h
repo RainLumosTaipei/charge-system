@@ -8,6 +8,7 @@
 #include <string>
 #include "ChargingType.h"
 #include "util/JsonHelper.h"
+#include "Order.h"
 
 class Vehicle {
 public:
@@ -19,12 +20,15 @@ public:
     double chargeTime; // 充电时长（小时，reqPower / 功率）
     time_t start;      // 启动时间（秒）
     time_t end;        // 结束时间（秒）
+    Order *order;      //到对应账单的索引
     
 
     // 计费信息
     double elecFee;    // 充电费
     double servFee;    // 服务费
     double totalFee;   // 总费用
+
+    void updateOrder();
 
     Vehicle(size_t uid, ChargingType t, double rp)
     :uid(uid), mode(t), reqPower(rp), elecFee(0), servFee(0), totalFee(0) {

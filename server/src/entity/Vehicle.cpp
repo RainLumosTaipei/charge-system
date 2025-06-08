@@ -4,6 +4,12 @@
 
 #include "entity/Vehicle.h"
 
+void Vehicle::updateOrder() {
+    order->setCost(totalFee);
+    order->setStart(start);
+    order->setEnd(end);
+    order->setType(mode);
+}
 
 void to_json(nlohmann::json& j, const Vehicle& v){
     j["type"] = v.mode;

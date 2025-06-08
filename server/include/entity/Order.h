@@ -20,9 +20,9 @@ public:
 
     void setUid(size_t uid);
 
-    const float getCost() const;
+    const double getCost() const;
 
-    void setCost(float cost);
+    void setCost(double cost);
 
     time_t getStart() const;
 
@@ -38,12 +38,12 @@ public:
 
     friend void from_json(const nlohmann::json& j, Order& o);
 
-    Order(size_t uid,float cost, time_t start, time_t end, ChargingType type);
+    Order(size_t uid,double cost, time_t start, time_t end, ChargingType type);
 
 private:
     size_t id;
     size_t uid;
-    float cost;
+    double cost;
     time_t start;
     time_t end;
     ChargingType type;

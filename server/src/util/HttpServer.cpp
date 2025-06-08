@@ -161,6 +161,8 @@ void HttpServer::start() {
         }
         res.set_content(j.dump(), "application/json");
     });
+
+
     
     server.listen("0.0.0.0", 8080);
 }

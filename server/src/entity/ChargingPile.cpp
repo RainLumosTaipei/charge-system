@@ -31,8 +31,18 @@ void ChargingPile::addVehicle(Vehicle &veh, time_t now) {
 void ChargingPile::processCompletion(time_t now) {
     std::vector<Vehicle> newQueue;
     for (auto& v : queue) {
-        if (v.end > now) newQueue.push_back(v); // 未完成，保留
-        else calculateBill(v); // 完成，计算费用（假设已实现）
+        if (v.end > now) {
+            time_t tmp=v.end;
+            v.end=now;
+            calculateBill(v);
+            v.end=tmp;
+            newQueue.push_back(v);
+            v.updateOrder();
+        } // 未完成，保留
+        else {
+            calculateBill(v);
+//            v.updateOrder();
+        } // 完成，计算费用（假设已实现）
     }
     queue = newQueue;
 }
