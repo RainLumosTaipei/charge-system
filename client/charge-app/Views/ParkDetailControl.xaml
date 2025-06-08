@@ -9,85 +9,96 @@
 
     <UserControl.Resources>
         <DataTemplate x:Key="VehicleItemTemplate" x:DataType="models:Vehicle">
-            <Grid Padding="8 12"  Background="{ThemeResource ListViewItemBackground}">
+            <Grid Padding="8,12" Background="{ThemeResource ListViewItemBackground}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!-- 左侧图标区域 -->
-                <StackPanel 
-                    Orientation="Vertical" 
+                <!--  左侧图标区域  -->
+                <StackPanel
+                    Margin="0,0,24,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Margin="0,0,24,0">
-                    <FontIcon Glyph="&#xE804;" 
-                              FontSize="40"
-                              Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                    <TextBlock Text="{x:Bind TextType}" 
-                               FontSize="14"
-                               FontWeight="SemiBold"
-                               Margin="0 8 0 0"
-                               HorizontalAlignment="Center"
-                               Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                    Orientation="Vertical">
+                    <FontIcon
+                        FontSize="40"
+                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                        Glyph="&#xE804;" />
+                    <TextBlock
+                        Margin="0,8,0,0"
+                        HorizontalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                        Text="{x:Bind TextType}" />
                 </StackPanel>
 
-                <!-- 中间内容区域 -->
+                <!--  中间内容区域  -->
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{x:Bind TextQueueId}" FontSize="16" FontWeight="SemiBold" />
-                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                        <TextBlock Text="请求电量 :" Margin="0,0,4,0" />
+                    <TextBlock
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Text="{x:Bind TextQueueId}" />
+                    <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                        <TextBlock Margin="0,0,4,0" Text="请求电量 :" />
                         <TextBlock Text="{x:Bind TextReqPower}" />
-                        <TextBlock Text="充电时长 :" Margin="104,0, 4,0" />
+                        <TextBlock Margin="104,0,4,0" Text="充电时长 :" />
                         <TextBlock Text="{x:Bind TextChargeTime}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
-                        <TextBlock Text="开始时间 :" Margin="0,0,4,0" />
-                        <TextBlock 
-                            Text="{x:Bind TextStart}" />
-                        <TextBlock Text="结束时间 :" Margin="32,0,4,0" />
+                    <StackPanel Margin="0,2,0,0" Orientation="Horizontal">
+                        <TextBlock Margin="0,0,4,0" Text="开始时间 :" />
+                        <TextBlock Text="{x:Bind TextStart}" />
+                        <TextBlock Margin="32,0,4,0" Text="结束时间 :" />
                         <TextBlock Text="{x:Bind TextEnd}" />
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2" HorizontalAlignment="Right" >
+                <StackPanel Grid.Column="2" HorizontalAlignment="Right">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="总金额:" 
-                                   FontSize="16"
-                                   FontWeight="SemiBold"
-                                   Margin="0,0,4,0"/>
-                        <TextBlock Text="{x:Bind TextTotalFee}"
-                                   FontSize="16" FontWeight="Bold"
-                                   Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                    </StackPanel>
-                    
-                    <StackPanel 
-                        HorizontalAlignment="Right"
-                        Orientation="Horizontal" 
-                        Margin="0 4 0 0">
-                        <TextBlock Text="电费:" 
-                                   FontSize="12"
-                                   FontWeight="SemiBold"
-                                   Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
-                                   Margin="0,0,4,0"/>
-                        <TextBlock Text="{x:Bind TextElecFee}"
-                                   FontSize="12"
-                                   Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                        <TextBlock
+                            Margin="0,0,4,0"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="总金额:" />
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                            Text="{x:Bind TextTotalFee}" />
                     </StackPanel>
 
-                    <StackPanel 
+                    <StackPanel
+                        Margin="0,4,0,0"
                         HorizontalAlignment="Right"
-                        Orientation="Horizontal" 
-                        Margin="0 4 0 0">
-                        <TextBlock Text="服务费:" 
-                                   FontSize="12"
-                                   FontWeight="SemiBold"
-                                   Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
-                                   Margin="0,0,4,0"/>
-                        <TextBlock Text="{x:Bind TextServFee}"
-                                   FontSize="12"
-                                   Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}" />
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0,0,4,0"
+                            FontSize="12"
+                            FontWeight="SemiBold"
+                            Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                            Text="电费:" />
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                            Text="{x:Bind TextElecFee}" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="0,4,0,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0,0,4,0"
+                            FontSize="12"
+                            FontWeight="SemiBold"
+                            Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                            Text="服务费:" />
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
+                            Text="{x:Bind TextServFee}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -98,61 +109,60 @@
     <ScrollViewer
         Name="ForegroundElement"
         HorizontalAlignment="Stretch"
-        VerticalScrollMode="Enabled"
-        IsTabStop="True">
-        <StackPanel HorizontalAlignment="Left" Margin="24 16 0 0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+        IsTabStop="True"
+        VerticalScrollMode="Enabled">
+        <StackPanel Margin="24,16,0,0" HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                 <FontIcon
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="48"
-                    Glyph="&#xEBB3;"
-                    />
+                    Glyph="&#xEBB3;" />
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center"
-                    Text="{x:Bind ListDetailsMenuItem.TextType, Mode=OneWay}"
-                    Style="{ThemeResource TitleTextBlockStyle}" />
+                    Style="{ThemeResource TitleTextBlockStyle}"
+                    Text="{x:Bind ListDetailsMenuItem.TextType, Mode=OneWay}" />
             </StackPanel>
 
             <StackPanel Padding="0,24,0,0">
 
-                <TextBlock Text="运行情况" Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextIsFaulty, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="运行情况" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextIsFaulty, Mode=OneWay}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="功率"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextPower, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                    Style="{StaticResource DetailSubTitleStyle}"
+                    Text="功率" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextPower, Mode=OneWay}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="总充电次数"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.Count, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                    Style="{StaticResource DetailSubTitleStyle}"
+                    Text="总充电次数" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.Count, Mode=OneWay}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="总充电时长"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextTotalTime, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                    Style="{StaticResource DetailSubTitleStyle}"
+                    Text="总充电时长" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextTotalTime, Mode=OneWay}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="总充电量"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextTotalPower, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                    Style="{StaticResource DetailSubTitleStyle}"
+                    Text="总充电量" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextTotalPower, Mode=OneWay}" />
 
-           </StackPanel>
+            </StackPanel>
 
             <ListView
                 x:Name="VehicleListView"
-                ItemsSource="{x:Bind ListDetailsMenuItem.Queue}"
-                ItemTemplate="{StaticResource VehicleItemTemplate}"
-                SelectionMode="Single"
                 MinWidth="800"
-                Margin="-12,12, 0 ,0"/>
+                Margin="-12,12,0,0"
+                ItemTemplate="{StaticResource VehicleItemTemplate}"
+                ItemsSource="{x:Bind ListDetailsMenuItem.Queue}"
+                SelectionMode="Single" />
 
         </StackPanel>
     </ScrollViewer>

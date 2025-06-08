@@ -29,6 +29,6 @@ public class RegisterViewModel
     {
         var req = new RegisterReq(Username, Password);
         var res =  await _userService.Register(req);
-        return res.Uid;
+        return res.Id;
     }
 }

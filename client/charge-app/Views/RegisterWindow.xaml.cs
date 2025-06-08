@@ -36,8 +36,10 @@ public sealed partial class RegisterWindow : Window
         this.InitializeComponent();
         ViewModel= App.GetService<RegisterViewModel>();
         AppWindow.Title = "注册";
-        AppWindow.Resize(new Windows.Graphics.SizeInt32(600, 400));
-        AppWindow.Move(new Windows.Graphics.PointInt32(800, 400));
+
+        AppWindow.Resize(new Windows.Graphics.SizeInt32(600, 600));
+        AppWindow.Move(new Windows.Graphics.PointInt32(1200, 500));
+
         AppWindow.TitleBar.BackgroundColor = Microsoft.UI.Colors.Black;
         AppWindow.TitleBar.ForegroundColor = Microsoft.UI.Colors.White;
         AppWindow.TitleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Black;

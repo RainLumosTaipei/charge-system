@@ -23,7 +23,7 @@
                     VerticalAlignment="Center"
                     Margin="0,0,24,0">
                     <FontIcon Glyph="&#xE7BF;"
-                              FontSize="40"
+                              FontSize="32"
                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                     <TextBlock Text="{x:Bind TextType}"
                                FontSize="14"
@@ -66,14 +66,13 @@
         HorizontalAlignment="Stretch"
         VerticalScrollMode="Enabled"
         IsTabStop="True">
-        <StackPanel HorizontalAlignment="Left">
+        <StackPanel HorizontalAlignment="Left" Margin="24 12 0 0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <FontIcon
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="48"
-                    Glyph="{x:Bind ListDetailsMenuItem.Symbol, Mode=OneWay}"
-                    AutomationProperties.Name="{x:Bind ListDetailsMenuItem.SymbolName, Mode=OneWay}"  />
+                    Glyph="&#xE76E;" />
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center"
@@ -84,20 +83,20 @@
             <StackPanel Padding="0,15,0,0">
                 <TextBlock Text="权限" Style="{StaticResource DetailSubTitleStyle}" />
 
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.Type, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextType, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="Order date"
+                    Text="用户标识符"
                     Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.Id, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextId, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
 
             </StackPanel>
 
             <ListView
                 x:Name="OrderListView"
-                ItemsSource="{x:Bind ListDetailsMenuItem.Orders}"
+                ItemsSource="{x:Bind ListDetailsMenuItem.Orders, Mode=OneWay}"
                 ItemTemplate="{StaticResource OrderItemTemplate}"
                 SelectionMode="Single"
                 MinWidth="800"

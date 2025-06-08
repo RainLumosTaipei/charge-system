@@ -13,7 +13,7 @@ public class Order
     public float Cost { get; set; }
     public ChargingPile.ChargingPileType Type { get; set; }
 
-    [JsonIgnore] public string TextType => Type == ChargingPile.ChargingPileType.Fast ? "快充" : "慢充";
+    [JsonIgnore] public string TextType => Type == ChargingPile.ChargingPileType.Fast ? "快充型" : "慢充型";
     [JsonIgnore] public string TextStart => TimeHelper.ConvertTime(Start);
     [JsonIgnore] public string TextEnd => TimeHelper.ConvertTime(End);
     [JsonIgnore] public string TextCost => $"{Cost:F2} 元";

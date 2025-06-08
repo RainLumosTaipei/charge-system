@@ -30,6 +30,6 @@ public class LoginViewModel
     {
         var req = new LoginReq(Username, Password);
         var res =  await _userService.Login(req);
-        return res.Uid;
+        return res.Id;
     }
 }

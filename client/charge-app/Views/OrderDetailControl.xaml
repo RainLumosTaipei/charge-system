@@ -10,7 +10,7 @@
         HorizontalAlignment="Stretch"
         VerticalScrollMode="Enabled"
         IsTabStop="True">
-        <StackPanel HorizontalAlignment="Left">
+        <StackPanel HorizontalAlignment="Left" Margin="24 12 0 0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <FontIcon
                     HorizontalAlignment="Center"
@@ -24,8 +24,8 @@
                     Text="{x:Bind ListDetailsMenuItem.TextType, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}" />
             </StackPanel>
-            <StackPanel Padding="16,16,0,0">
-                <TextBlock Text="Id" Style="{StaticResource DetailSubTitleStyle}" />
+            <StackPanel Padding="0,16,0,0">
+                <TextBlock Text="账单编号" Style="{StaticResource DetailSubTitleStyle}" />
                 <TextBlock Text="{x:Bind ListDetailsMenuItem.Id, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
                 <TextBlock

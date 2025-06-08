@@ -11,21 +11,28 @@ public sealed partial class MainPage : Page
         get;
     }
 
+    // private WindowManager LoginWnd = WindowManager.Get(new LoginWindow());
+    // private WindowManager RegisterWnd = WindowManager.Get(new RegisterWindow());
+
     public MainPage()
     {
         ViewModel = App.GetService<MainViewModel>();
         InitializeComponent();
+        // LoginWnd.IsAlwaysOnTop = true;
+        // LoginWnd.IsResizable = false;
+        // RegisterWnd.IsAlwaysOnTop = true;
+        // LoginWnd.IsResizable = false;
     }
 
     private void Login(object sender, RoutedEventArgs e)
     {
-        var wnd = new LoginWindow();
-        wnd.Activate();
+        var loginWindow = new LoginWindow();
+        loginWindow.Show();
     }
 
     private void Register(object sender, RoutedEventArgs e)
     {
-        var wnd = new RegisterWindow();
-        wnd.Activate();
+        var registerWindow = new RegisterWindow();
+        registerWindow.Show();
     }
 }
