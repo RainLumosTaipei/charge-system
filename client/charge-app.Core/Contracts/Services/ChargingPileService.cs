@@ -11,7 +11,7 @@ public class ChargingPileService : IChargingPileService
         {
             var json = await HttpHelper.GetAsync("/pile/all");
             var piles = await JsonHelper.ToObjectAsync<ChargingPile[]>(json);
-            return piles; // 返回IEnumerable<User>
+            return piles;
         }
         catch (Exception ex)
         {

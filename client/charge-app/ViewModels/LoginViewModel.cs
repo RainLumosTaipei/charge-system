@@ -1,6 +1,5 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using charge_app.Core.Contracts.Services;
+using charge_app.Core.Reqs;
 
 namespace charge_app.ViewModels;
 
@@ -14,13 +13,13 @@ public class LoginViewModel
     }
 
 
-    public string Username
+    public string? Username
     {
         get;
         set;
     }
 
-    public string Password
+    public string? Password
     {
         get;
         set;
@@ -29,6 +28,7 @@ public class LoginViewModel
 
     public async Task<bool> LoginAsync()
     {
-        return await _userService.Login(Username, Password);
+        var req = new LoginReq(Username, Password);
+        return await _userService.Login(req);
     }
 }

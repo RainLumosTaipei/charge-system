@@ -1,7 +1,10 @@
-﻿namespace charge_app.Core.Models;
+﻿using Newtonsoft.Json;
+
+namespace charge_app.Core.Models;
 
 public class UserDesc
 {
+    public static uint Guid { get; set; }
     public uint Id { get; set; }
     public string Name { get; set; }
 
@@ -10,10 +13,13 @@ public class UserDesc
     public Order[] Orders { get; set; }
     public uint CarId { get; set; }
 
-    public char Symbol { get => RandomIcon(); }
-    public string SymbolName { get => "User"; }
 
+    [JsonIgnore]
     public string TextId { get => $"uid: {Id}"; }
+    [JsonIgnore]
+    public char Symbol { get => RandomIcon(); }
+    [JsonIgnore]
+    public string SymbolName { get => "User"; }
 
     public UserDesc(User u, Order[] o)
     {

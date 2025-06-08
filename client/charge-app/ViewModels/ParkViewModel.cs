@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
 using charge_app.Contracts.ViewModels;
-using charge_app.Core.Contracts.Services;
 using charge_app.Core.Models;
 
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -10,28 +9,26 @@ namespace charge_app.ViewModels;
 
 public partial class ParkViewModel : ObservableRecipient, INavigationAware
 {
-    private readonly ISampleDataService _sampleDataService;
+    private readonly IChargingPileService _chargingPileService;
 
     [ObservableProperty]
-    private SampleOrder? selected;
+    private ChargingPile? selected;
 
-    public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+    public ObservableCollection<ChargingPile> PileItems { get; private set; } = new ObservableCollection<ChargingPile>();
 
-    public ParkViewModel(ISampleDataService sampleDataService)
+    public ParkViewModel(IChargingPileService chargingPileService)
     {
-        _sampleDataService = sampleDataService;
+        _chargingPileService = chargingPileService;
     }
 
     public async void OnNavigatedTo(object parameter)
     {
-        SampleItems.Clear();
+        PileItems.Clear();
+        var piles = await _chargingPileService.GetPiles();
 
-        // TODO: Replace with real data.
-        var data = await _sampleDataService.GetListDetailsDataAsync();
-
-        foreach (var item in data)
+        foreach (var item in piles)
         {
-            SampleItems.Add(item);
+            PileItems.Add(item);
         }
     }
 
@@ -41,6 +38,6 @@ public partial class ParkViewModel : ObservableRecipient, INavigationAware
 
     public void EnsureItemSelected()
     {
-        Selected ??= SampleItems.First();
+        Selected ??= PileItems.FirstOrDefault();
     }
 }

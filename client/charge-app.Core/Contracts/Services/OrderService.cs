@@ -11,7 +11,7 @@ public class OrderService : IOrderService
         {
             var json = await HttpHelper.GetAsync("/order?" + id);
             var orders = await JsonHelper.ToObjectAsync<Order[]>(json);
-            return orders; // 返回IEnumerable<User>
+            return orders;
         }
         catch (Exception ex)
         {
@@ -19,4 +19,5 @@ public class OrderService : IOrderService
             return Enumerable.Empty<Order>();
         }
     }
+
 }

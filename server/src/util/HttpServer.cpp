@@ -32,7 +32,7 @@ void HttpServer::start() {
     server.Get("/login",[&](const httplib::Request &req, httplib::Response &res)
     {
         bool same_flag=false;
-        std::multimap<std::string, std::string>::const_iterator message = req.params.begin();
+        auto message = req.params.begin();
         string user_name=message->second;
         ++message;
         string password = message->second;
@@ -54,7 +54,7 @@ void HttpServer::start() {
     server.Get("/CreateNewAccount",[&](const httplib::Request & req, httplib::Response &res)
     {
         bool same_flag=false;
-        std::multimap<std::string, std::string>::const_iterator message = req.params.begin();
+        auto message = req.params.begin();
         string user_name=message->second;
         ++message;
         string password = message->second;
@@ -80,7 +80,7 @@ void HttpServer::start() {
 
     server.Get("/set_Pwd",[&](const httplib::Request & req, httplib::Response &res){
         bool success_flag=false;
-        std::multimap<std::string, std::string>::const_iterator message = req.params.begin();
+        auto message = req.params.begin();
         string user_name=message->second;
         ++message;
         string password = message->second;
@@ -103,8 +103,8 @@ void HttpServer::start() {
     server.Post("/E_chargingRequest",[&](const httplib::Request &req, httplib::Response &res)
     {
         nlohmann::json body=nlohmann::json::parse(req.body);
-        int Request_Amount = body["Request_Amount"];//即充电量
-        string Request_Mode = body["Request_Mode"];
+        int Request_Amount = body["requestAmount"];//即充电量
+        string Request_Mode = body["requestMode"];
         Vehicle* veh = charger.submitRequest(Request_Mode, Request_Amount);
         nlohmann::json j;
         if (veh==nullptr) j["return"]=false;
