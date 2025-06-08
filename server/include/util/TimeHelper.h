@@ -13,7 +13,7 @@
         localtime_s(result, time); \
     } while(0)
 #else
-#define LOCALTIME_SAFE(result, time) \
+#define localtime_u(result, time) \
     do { \
         localtime_r(time, result); \
     } while(0)
