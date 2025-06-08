@@ -14,15 +14,11 @@ ChargingPile::ChargingPile(ChargingType t, double p)
 
 // 添加车辆（计算启动/结束时间）
 void ChargingPile::addVehicle(Vehicle &veh, time_t now) {
-    if (queue.empty()) {
-        veh.start = now;
-        veh.end = veh.start + veh.chargeTime * 3600; // 转换为秒
-        queue.push_back(veh);
-    } else {
-        veh.start=queue.front().end;
-        veh.end = veh.start + veh.chargeTime * 3600; // 转换为秒
-        queue.push_back(veh); // 加入排队（第二个车位）
-    }
+    if (queue.empty()) veh.start = now;
+    else  veh.start=queue.front().end;
+    veh.end = veh.start + veh.chargeTime * 3600; // 转换为秒
+    veh.order=new Order(veh.uid,veh.totalFee,veh.start,veh.end,veh.mode);
+    queue.push_back(veh); // 加入排队（第二个车位）
     count++;
     totalTime += veh.chargeTime;
     totalPower += veh.reqPower;
@@ -31,17 +27,18 @@ void ChargingPile::addVehicle(Vehicle &veh, time_t now) {
 void ChargingPile::processCompletion(time_t now) {
     std::vector<Vehicle> newQueue;
     for (auto& v : queue) {
-        if (v.end > now) {
+        if (v.start>=now) newQueue.push_back(v);
+        else if (v.end > now) {
             time_t tmp=v.end;
             v.end=now;
             calculateBill(v);
             v.end=tmp;
+            v.updateOrder();
             newQueue.push_back(v);
-            //v.updateOrder();
         } // 未完成，保留
         else {
             calculateBill(v);
-//            v.updateOrder();
+            v.updateOrder();
         } // 完成，计算费用（假设已实现）
     }
     queue = newQueue;

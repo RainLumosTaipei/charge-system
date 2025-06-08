@@ -26,15 +26,15 @@ void User::setPassword(const std::string &password) {
     User::password = password;
 }
 
-const std::vector<Order> &User::getOrders() const {
+const std::vector<Order*> &User::getOrders() const {
     return orders;
 }
 
-void User::setOrders(const std::vector<Order> &orders) {
-    User::orders = orders;
-}
+// void User::setOrders(const std::vector<Order> &orders) {
+//     User::orders = orders;
+// }
 
-void User::addOrder(const Order &order) {
+void User::addOrder(Order* order) {
     orders.push_back(order);
 }
 
@@ -46,5 +46,5 @@ void to_json(nlohmann::json& j, const User& u) {
     j["id"]=u.getUid();
     j["name"] = u.getName();
     j["password"] = u.getPassword();
-    j["orders"] = u.getOrders();
+    for (Order* tmp:u.getOrders())j["orders"].push_back(*tmp);
 }

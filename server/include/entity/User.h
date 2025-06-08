@@ -21,13 +21,13 @@ public:
 
     void setPassword(const std::string &password);
 
-    const std::vector<Order> &getOrders() const;
+    const std::vector<Order*> &getOrders() const;
 
-    void setOrders(const std::vector<Order> &orders);
+    // void setOrders(const std::vector<Order> &orders);
 
     const size_t getUid() const;
 
-    void addOrder(const Order &order);
+    void addOrder(Order* order);
 
     User(std::string name, std::string password);
 
@@ -35,7 +35,7 @@ private:
     size_t id;
     std::string name;
     std::string password;
-    std::vector<Order> orders;
+    std::vector<Order*> orders={};
 
     static size_t id_count;
 };

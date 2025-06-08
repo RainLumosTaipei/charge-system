@@ -19,13 +19,8 @@ void HttpServer::start() {
     Server chargeServer(users);
     UserClient charger(chargeServer,"main");
 
-
-    charger.submitRequest(1, FAST, 100);
-    charger.submitRequest(1, FAST, 100);
-    charger.submitRequest(1, FAST, 100);
-    charger.submitRequest(1, FAST, 100);
-
     server.Get("/user/all", [&](const httplib::Request &, httplib::Response &res) {
+        chargeServer.schedule();
         nlohmann::json j = users;
         std::cout << j << std::endl;
         res.set_content(j.dump(), "application/json");
@@ -123,6 +118,7 @@ void HttpServer::start() {
 
     server.Post("/user/charge/update",[&](const httplib::Request &req, httplib::Response &res)//仅支持对未开始充电的车辆进行修改
     {
+        chargeServer.schedule();
         nlohmann::json body=nlohmann::json::parse(req.body);
         size_t queueNum = body["queueId"];
         double chargeTime = body["chargeTime"];
@@ -134,6 +130,7 @@ void HttpServer::start() {
     });
 
     server.Post("/user/mode/update",[&](const httplib::Request &req, httplib::Response &res){
+        chargeServer.schedule();
         nlohmann::json body=nlohmann::json::parse(req.body);
         size_t queueNum = body["queueId"];
         ChargingType chargeMode = body["chargeMode"];
@@ -145,18 +142,20 @@ void HttpServer::start() {
     });
 
     server.Get("/pile/all", [&](const httplib::Request & req, httplib::Response &res){
+        chargeServer.schedule();
         nlohmann::json j;
         charger.viewPileStatus(j);
         res.set_content(j.dump(), "application/json");
     });
 
     server.Get("/order",[&](const httplib::Request & req, httplib::Response &res) {
+        chargeServer.schedule();
         auto message = req.params.begin();
         int uid=stoi(message->second);
         nlohmann::json j;
         for (auto &user:users) {
             if (user.getUid()==uid) {
-                j = user.getOrders();
+                for (Order* tmp:user.getOrders()) j.push_back(*tmp);
             }
         }
         cout << j.dump() << endl;
