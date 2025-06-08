@@ -9,15 +9,17 @@
 #include "entity/WaitingArea.h"
 #include <vector>
 #include <ctime>
+#include "entity/User.h"
 
 // 服务器端（调度、计费、故障处理）
 class Server {
 public:
+    std::vector<User> users;
     std::vector<ChargingPile> fastPiles;   // 快充桩（默认2个）
     std::vector<ChargingPile> tricklePiles; // 慢充桩（默认3个）
     WaitingArea waitingArea;          // 等候区（容量6）
 
-    Server(int fastNum = 2, int trickleNum = 3, int waitSize = 6) ;
+    Server(std::vector<User> &users,int fastNum = 2, int trickleNum = 3, int waitSize = 6) ;
 
     // 调度策略：选择使车辆完成时长（等待+充电）最短的充电桩队列
     void schedule() ;

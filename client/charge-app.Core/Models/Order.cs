@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using charge_app.Core.Helpers;
+using Newtonsoft.Json;
 
 namespace charge_app.Core.Models;
 
@@ -13,23 +14,12 @@ public class Order
     public ChargingPile.ChargingPileType Type { get; set; }
 
     [JsonIgnore] public string TextType => Type == ChargingPile.ChargingPileType.Fast ? "快充" : "慢充";
-    [JsonIgnore] public char Symbol => RandomIcon();
+    [JsonIgnore] public string TextStart => TimeHelper.ConvertTime(Start);
+    [JsonIgnore] public string TextEnd => TimeHelper.ConvertTime(End);
+    [JsonIgnore] public string TextCost => $"${Cost:F2}元";
+    [JsonIgnore] public char Symbol => IconHelper.RandomIcon();
 
-    [JsonIgnore] public string SymbolName => "User";
+    [JsonIgnore] public string SymbolName => "Order";
 
-    private static readonly Random _random = new Random();
-    private static readonly char[] _icons = new[]
-    {
-        '\uE716',
-        '\uEE57',
-        '\uEC87',
-        '\uEC3B',
-        '\uE862',
-    };
 
-    private char RandomIcon()
-    {
-        int index = _random.Next(0, _icons.Length);
-        return _icons[index];
-    }
 }

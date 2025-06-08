@@ -5,8 +5,10 @@
 #include <ctime>
 #include "entity/ChargingPile.h"
 
-ChargingPile::ChargingPile(std::string t, double p)
-: type(t), power(p), isFaulty(false), count(0), totalTime(0), totalPower(0) {
+size_t ChargingPile::id_count = 0;
+
+ChargingPile::ChargingPile(ChargingType t, double p)
+: id(id_count++), type(t), power(p), isFaulty(false), count(0), totalTime(0), totalPower(0) {
 
 }
 
@@ -14,14 +16,16 @@ ChargingPile::ChargingPile(std::string t, double p)
 void ChargingPile::addVehicle(Vehicle &veh, time_t now) {
     if (queue.empty()) {
         veh.start = now;
-        veh.end = now + veh.chargeTime * 3600; // 转换为秒
+        veh.end = veh.start + veh.chargeTime * 3600; // 转换为秒
         queue.push_back(veh);
-        count++;
-        totalTime += veh.chargeTime;
-        totalPower += veh.reqPower;
     } else {
+        veh.start=queue.front().end;
+        veh.end = veh.start + veh.chargeTime * 3600; // 转换为秒
         queue.push_back(veh); // 加入排队（第二个车位）
     }
+    count++;
+    totalTime += veh.chargeTime;
+    totalPower += veh.reqPower;
 }
 
 void ChargingPile::processCompletion(time_t now) {
@@ -60,5 +64,14 @@ void ChargingPile::calculateBill(Vehicle &veh) {
 }
 
 
-
+void to_json(nlohmann::json& j, const ChargingPile& pile){
+    j["totalPower"] = pile.totalPower;
+    j["totalTime"] = pile.totalTime;
+    j["power"] = pile.power;
+    j["count"] = pile.count;
+    j["type"] = pile.type;
+    j["isFaulty"] = pile.isFaulty;
+    j["queue"] = pile.queue;
+    j["id"] = pile.id;
+}
 

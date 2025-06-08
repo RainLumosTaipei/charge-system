@@ -25,6 +25,7 @@
 
             <Button
                 Content="登录"
+                Style="{StaticResource AccentButton}"
                 Click="Login"
                 Grid.Column="0"
                 Margin="5" />

@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using charge_app.Core.Models;
 using charge_app.ViewModels;
 using Microsoft.Windows.AppNotifications;
 using Microsoft.Windows.AppNotifications.Builder;
@@ -50,10 +51,11 @@ public sealed partial class RegisterWindow : Window
 
     private async void Register(object sender, RoutedEventArgs e)
     {
-        bool res = await ViewModel.RegisterAsync();
+        int res = await ViewModel.RegisterAsync();
 
-        if (res)
+        if (res != -1)
         {
+            UserDesc.Guid = (uint)res;
             AppNotification notification = new AppNotificationBuilder()
                 .AddText("注册成功")
                 .AddText("Explore interactive samples and discover the power of modern Windows UI.")
@@ -64,6 +66,7 @@ public sealed partial class RegisterWindow : Window
         }
         else
         {
+
             AppNotification notification = new AppNotificationBuilder()
                 .AddText("注册失败")
                 .AddText("Explore interactive samples and discover the power of modern Windows UI.")

@@ -2,6 +2,6 @@ namespace charge_app.Core.Reqs;
 
 public class UpdateChargeReq
 {
-    public int QueneNum { get; set; }
-    public int ChargeTime { get; set; }
+    public uint QueueId { get; set; }
+    public double ChargeTime { get; set; }
 }

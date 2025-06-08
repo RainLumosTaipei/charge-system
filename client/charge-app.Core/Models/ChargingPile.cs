@@ -17,14 +17,20 @@ public class ChargingPile
     public int Count { get; set; }
     public double TotalTime { get; set; }
     public double ToTalPower { get; set; }
+    public Vehicle[] Queue { get; set; }
 
-    [JsonIgnore] public string TextType => Type == ChargingPileType.Fast ? "快充" : "慢充";
-    [JsonIgnore] public string TextIsFaulty => IsFaulty == true ? "故障" : "正常";
+
+    [JsonIgnore] public string TextType => Type == ChargingPileType.Fast ? "快充桩" : "慢充桩";
+    [JsonIgnore] public string TextPower => $"{Power}度/小时";
+    [JsonIgnore] public string TextId => $"充电桩{Id}";
+    [JsonIgnore] public string TextTotalTime => $"{TotalTime}小时";
+    [JsonIgnore] public string TextTotalPower => $"{ToTalPower}度";
+    [JsonIgnore] public string TextIsFaulty => IsFaulty ? "故障" : "正常";
     [JsonIgnore] public char Symbol  => RandomIcon();
-    [JsonIgnore] public string SymbolName  => "User";
+    [JsonIgnore] public string SymbolName  => "ChargingPile";
 
-    private static readonly Random _random = new Random();
-    private static readonly char[] _icons = new[]
+    private static readonly Random Random = new ();
+    private static readonly char[] Icons =
     {
         '\uE716',
         '\uEE57',
@@ -33,9 +39,9 @@ public class ChargingPile
         '\uE862',
     };
 
-    private char RandomIcon()
+    private static char RandomIcon()
     {
-        int index = _random.Next(0, _icons.Length);
-        return _icons[index];
+        var index = Random.Next(0, Icons.Length);
+        return Icons[index];
     }
 }

@@ -15,8 +15,7 @@ public:
 
     explicit AdminClient(Server& s) : server(s) {}
 
-    // 查看充电桩状态
-    void viewPileStatus() ;
+
 
     // 查看等候区车辆
     void viewWaitingVehicles() ;

@@ -9,6 +9,7 @@
 #include <vector>
 #include "Order.h"
 #include "util/JsonHelper.h"
+#include "Vehicle.h"
 
 class User {
 public:
@@ -24,12 +25,19 @@ public:
 
     void setOrders(const std::vector<Order> &orders);
 
+    const size_t getUid() const;
+
+    void addOrder(const Order &order);
+
     User(std::string name, std::string password);
 
 private:
+    size_t uid;
     std::string name;
     std::string password;
     std::vector<Order> orders;
+
+    static size_t id_count;
 };
 
 void to_json(nlohmann::json& j, const User& u);

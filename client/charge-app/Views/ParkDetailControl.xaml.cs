@@ -7,13 +7,15 @@ namespace charge_app.Views;
 
 public sealed partial class ParkDetailControl : UserControl
 {
-    public SampleOrder? ListDetailsMenuItem
+    public ChargingPile? ListDetailsMenuItem
     {
-        get => GetValue(ListDetailsMenuItemProperty) as SampleOrder;
+        get => GetValue(ListDetailsMenuItemProperty) as ChargingPile;
         set => SetValue(ListDetailsMenuItemProperty, value);
     }
 
-    public static readonly DependencyProperty ListDetailsMenuItemProperty = DependencyProperty.Register("ListDetailsMenuItem", typeof(SampleOrder), typeof(ParkDetailControl), new PropertyMetadata(null, OnListDetailsMenuItemPropertyChanged));
+    public static readonly DependencyProperty ListDetailsMenuItemProperty =
+        DependencyProperty.Register(nameof(ListDetailsMenuItem), typeof(ChargingPile), typeof(ParkDetailControl),
+            new PropertyMetadata(null, OnListDetailsMenuItemPropertyChanged));
 
     public ParkDetailControl()
     {

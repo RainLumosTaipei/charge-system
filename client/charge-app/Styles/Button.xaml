@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="AccentButton" TargetType="Button">
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="{ThemeResource SystemAccentColorDark1}" />
+
+        <!--  添加视觉状态管理  -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                        <!--  按钮内容  -->
+                        <ContentPresenter
+                            x:Name="ContentPresenter"
+                            Padding="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <VisualStateManager.VisualStateGroups>
+                            <!--  普通状态  -->
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+
+                                <!--  悬停状态  -->
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetName="RootGrid"
+                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                            To="{ThemeResource SystemAccentColor}"
+                                            Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!--  按下状态  -->
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetName="RootGrid"
+                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                            To="{ThemeResource SystemAccentColorDark2}"
+                                            Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!--  禁用状态  -->
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="ContentPresenter"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="0.5"
+                                            Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

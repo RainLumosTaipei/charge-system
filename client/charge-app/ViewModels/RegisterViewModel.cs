@@ -25,9 +25,10 @@ public class RegisterViewModel
     }
 
 
-    public async Task<bool> RegisterAsync()
+    public async Task<int> RegisterAsync()
     {
         var req = new RegisterReq(Username, Password);
-        return await _userService.Register(req);
+        var res =  await _userService.Register(req);
+        return res.Uid;
     }
 }

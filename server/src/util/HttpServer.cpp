@@ -10,18 +10,20 @@
 using namespace std;
 
 void HttpServer::start() {
-    Server chargeServer;
-    UserClient charger(chargeServer,"main");
     std::vector<User> preUsers{//第一个是用户名，第二个是密码
             {"zzm", "zzm"},
             {"jyx", "jyx"},
     };
 
     std::vector<User> users(std::move(preUsers));
-    
-    server.Get("/hi", [](const httplib::Request &, httplib::Response &res) {
-        res.set_content("Hello World!", "text/plain");
-    });
+    Server chargeServer(users);
+    UserClient charger(chargeServer,"main");
+
+
+    charger.submitRequest(1, FAST, 100);
+    charger.submitRequest(1, FAST, 100);
+    charger.submitRequest(1, FAST, 100);
+    charger.submitRequest(1, FAST, 100);
 
     server.Get("/user/all", [&](const httplib::Request &, httplib::Response &res) {
         nlohmann::json j = users;
@@ -29,29 +31,27 @@ void HttpServer::start() {
         res.set_content(j.dump(), "application/json");
     });
 
-    server.Get("/login",[&](const httplib::Request &req, httplib::Response &res)
+    server.Get("/user/login",[&](const httplib::Request &req, httplib::Response &res)
     {
-        bool same_flag=false;
         auto message = req.params.begin();
         string user_name=message->second;
         ++message;
         string password = message->second;
+        nlohmann::json j;
+        j["uid"]=-1;
         for (int i=0;i<users.size();++i)
         {
             if (users.at(i).getName()==user_name)
             {
-                if (users.at(i).getPassword()==password)same_flag=true;
+                if (users.at(i).getPassword()==password)j["uid"]=users.at(i).getUid();
                 break;
             }
         }
-        nlohmann::json j;
-        if (same_flag) j["return"]=true;
-        else j["return"]=false;
         printf("%s\n",j.dump().c_str());
         res.set_content(j.dump(), "application/json");
     });
 
-    server.Get("/CreateNewAccount",[&](const httplib::Request & req, httplib::Response &res)
+    server.Get("/user/register",[&](const httplib::Request & req, httplib::Response &res)
     {
         bool same_flag=false;
         auto message = req.params.begin();
@@ -67,18 +67,18 @@ void HttpServer::start() {
             }
         }
         nlohmann::json j;
-        if (same_flag) j["return"]=false;
+        if (same_flag) j["uid"]=-1;
         else
         {
             User tmp=User(user_name,password);
            users.push_back(tmp);
-           j["return"]=true;
+           j["uid"]=tmp.getUid();
         }
         printf("%s\n",j.dump().c_str());
         res.set_content(j.dump(), "application/json");
     });
 
-    server.Get("/set_Pwd",[&](const httplib::Request & req, httplib::Response &res){
+    server.Get("/user/update/password",[&](const httplib::Request & req, httplib::Response &res){
         bool success_flag=false;
         auto message = req.params.begin();
         string user_name=message->second;
@@ -100,34 +100,57 @@ void HttpServer::start() {
         res.set_content(j.dump(), "application/json");
     });
     
-    server.Post("/E_chargingRequest",[&](const httplib::Request &req, httplib::Response &res)
+    server.Post("/user/charge",[&](const httplib::Request &req, httplib::Response &res)
     {
         nlohmann::json body=nlohmann::json::parse(req.body);
-        int Request_Amount = body["requestAmount"];//即充电量
-        string Request_Mode = body["requestMode"];
-        Vehicle* veh = charger.submitRequest(Request_Mode, Request_Amount);
+        size_t uid=body["uid"];
+        double Request_Amount = body["amount"];//即充电量
+        ChargingType Request_Mode = body["type"];
+
+
+        Vehicle* veh = charger.submitRequest(uid, Request_Mode, Request_Amount);
         nlohmann::json j;
         if (veh==nullptr) j["return"]=false;
         else
         {
             j["return"]=true;
-            j["queueNum"]=veh->queueNum;
+            j["queueId"]=veh->queueId;
             j["chargeTime"]=veh->chargeTime;
         }
         printf("%s\n",j.dump().c_str());
         res.set_content(j.dump(), "application/json");
     });
 
-    server.Post("/Modify_Amount",[&](const httplib::Request &req, httplib::Response &res)//仅支持对未开始充电的车辆进行修改
+    server.Post("/user/charge/update",[&](const httplib::Request &req, httplib::Response &res)//仅支持对未开始充电的车辆进行修改
     {
         nlohmann::json body=nlohmann::json::parse(req.body);
-        string queueNum = body["QueueNum"];
-        int chargeTime = body["ChargeTime"];
+        size_t queueNum = body["queueId"];
+        double chargeTime = body["chargeTime"];
+
         nlohmann::json j;
         if (charger.modifyPower(queueNum, chargeTime))j["return"]=true;
         else j["return"]=false;
         res.set_content(j.dump(), "application/json");
     });
+
+    server.Post("/user/mode/update",[&](const httplib::Request &req, httplib::Response &res){
+        nlohmann::json body=nlohmann::json::parse(req.body);
+        size_t queueNum = body["queueId"];
+        ChargingType chargeMode = body["chargeMode"];
+
+        nlohmann::json j;
+        if (charger.modifyMode(queueNum, chargeMode))j["return"]=true;
+        else j["return"]=false;
+        res.set_content(j.dump(), "application/json");
+    });
+
+    server.Get("/pile/all", [&](const httplib::Request & req, httplib::Response &res){
+        nlohmann::json j;
+        charger.viewPileStatus(j);
+        res.set_content(j.dump(), "application/json");
+    });
+
+
     
     server.listen("0.0.0.0", 8080);
 }

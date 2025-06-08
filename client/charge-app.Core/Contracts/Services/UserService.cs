@@ -23,35 +23,34 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<bool> Register(RegisterReq req)
+    public async Task<RegisterRes> Register(RegisterReq req)
     {
         try
         {
             var json = await HttpHelper.GetAsync(
-                "/CreateNewAccount?" + req);
-            var u = await JsonHelper.ToObjectAsync<RegisterRes>(json);
-            return u.Return;
+                "/user/register?" + req);
+            return await JsonHelper.ToObjectAsync<RegisterRes>(json);
         }
         catch (Exception ex)
         {
             Console.WriteLine($"can't get users: {ex.Message}");
-            return false;
+            return null;
         }
     }
 
-    public async Task<bool> Login(LoginReq req)
+    public async Task<LoginRes> Login(LoginReq req)
     {
         try
         {
             var json = await HttpHelper.GetAsync(
-                "/login?" + req);
-            var u = await JsonHelper.ToObjectAsync<LoginRes>(json);
-            return u.Return;
+                "/user/login?" + req);
+            return await JsonHelper.ToObjectAsync<LoginRes>(json);
+
         }
         catch (Exception ex)
         {
             Console.WriteLine($"can't get users: {ex.Message}");
-            return false;
+            return null;
         }
     }
 
@@ -60,7 +59,7 @@ public class UserService : IUserService
         try
         {
             var json = await HttpHelper.PostAsync(
-                "/E_chargingRequest", req);
+                "/user/charge", req);
             var res = await JsonHelper.ToObjectAsync<ChargeRes>(json);
             return res;
         }
@@ -76,7 +75,7 @@ public class UserService : IUserService
         try
         {
             var json = await HttpHelper.PostAsync(
-                "/Modify_Amount", req);
+                "/user/charge/update", req);
             var res = await JsonHelper.ToObjectAsync<UpdateChargeRes>(json);
             return res.Return;
         }

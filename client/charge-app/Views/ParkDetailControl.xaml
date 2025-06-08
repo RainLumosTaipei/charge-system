@@ -4,7 +4,59 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:charge_app.Core.Models"
     mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="VehicleItemTemplate" x:DataType="models:Vehicle">
+            <Grid Padding="12" Background="{ThemeResource ListViewItemBackground}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- 左侧图标区域 -->
+                <StackPanel Orientation="Vertical" Margin="0,0,12,0">
+                    <FontIcon Glyph="&#xE706;" FontSize="24"
+                              Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                    <TextBlock Text="{x:Bind TextType}" FontSize="12"
+                               Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                </StackPanel>
+
+                <!-- 中间内容区域 -->
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{x:Bind QueueId}" FontSize="16" FontWeight="SemiBold" />
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <TextBlock Text="请求电量:" Margin="0,0,4,0" />
+                        <TextBlock Text="{x:Bind TextReqPower}" />
+                        <TextBlock Text="· 充电时间:" Margin="0,0,4,0" />
+                        <TextBlock Text="{x:Bind TextChargeTime}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                        <TextBlock Text="开始时间:" Margin="0,0,4,0" />
+                        <TextBlock Text="{x:Bind TextStart}" />
+                        <TextBlock Text="· 结束时间:" Margin="0,0,4,0" />
+                        <TextBlock Text="{x:Bind TextEnd}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" HorizontalAlignment="Right" >
+                    <TextBlock Text="{x:Bind TextTotalFee}"
+                               FontSize="16" FontWeight="Bold"
+                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                    <TextBlock Text="{x:Bind TextElecFee}"
+                               FontSize="12"
+                               Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                    <TextBlock Text="{x:Bind TextServFee}"
+                               FontSize="12"
+                               Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+
     <ScrollViewer
         Name="ForegroundElement"
         HorizontalAlignment="Stretch"
@@ -21,53 +73,48 @@
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center"
-                    Text="{x:Bind ListDetailsMenuItem.Company, Mode=OneWay}"
+                    Text="{x:Bind ListDetailsMenuItem.TextType, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}" />
             </StackPanel>
-            <StackPanel Padding="0,15,0,0">
-                <TextBlock Text="Status" Style="{StaticResource DetailSubTitleStyle}" />
 
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.Status, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+            <StackPanel Padding="16,16,0,0">
 
-                <TextBlock
-                    Margin="{StaticResource SmallTopMargin}"
-                    Text="Order date"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.OrderDate, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                <TextBlock
-                    Margin="{StaticResource SmallTopMargin}"
-                    Text="Company"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.Company, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                <TextBlock Text="运行情况" Style="{StaticResource DetailSubTitleStyle}" />
+                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextIsFaulty, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="Ship to"
+                    Text="功率"
                     Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.ShipTo, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                <TextBlock
-                    Margin="{StaticResource SmallTopMargin}"
-                    Text="Order total"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock Text="{x:Bind ListDetailsMenuItem.OrderTotal, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-
-                <TextBlock
-                    Margin="{StaticResource MediumTopMargin}"
-                    Text="Note 1"
-                    Style="{StaticResource DetailSubTitleStyle}" />
-                <TextBlock
-                    Style="{StaticResource DetailBodyStyle}"
-                    Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextPower, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Text="Note 2"
+                    Text="总充电次数"
                     Style="{StaticResource DetailSubTitleStyle}" />
+                <TextBlock Text="{x:Bind ListDetailsMenuItem.Count, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+
                 <TextBlock
-                    Margin="{StaticResource MediumBottomMargin}"
-                    Style="{StaticResource DetailBodyStyle}"
-                    Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
-            </StackPanel>
+                    Margin="{StaticResource SmallTopMargin}"
+                    Text="总充电时长"
+                    Style="{StaticResource DetailSubTitleStyle}" />
+                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextTotalTime, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+
+                <TextBlock
+                    Margin="{StaticResource SmallTopMargin}"
+                    Text="总充电量"
+                    Style="{StaticResource DetailSubTitleStyle}" />
+                <TextBlock Text="{x:Bind ListDetailsMenuItem.TextTotalPower, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+
+           </StackPanel>
+
+            <ListView
+                x:Name="VehicleListView"
+                ItemsSource="{x:Bind ListDetailsMenuItem.Queue}"
+                ItemTemplate="{StaticResource VehicleItemTemplate}"
+                SelectionMode="Single"
+                Margin="24,12"/>
+
         </StackPanel>
     </ScrollViewer>
 </UserControl>

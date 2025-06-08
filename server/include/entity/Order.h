@@ -38,6 +38,8 @@ public:
 
     friend void from_json(const nlohmann::json& j, Order& o);
 
+    Order(size_t uid, time_t start, time_t end, ChargingType type);
+
 private:
     size_t id;
     size_t uid;
@@ -45,6 +47,8 @@ private:
     time_t start;
     time_t end;
     ChargingType type;
+
+    size_t static id_count;
 };
 
 void to_json(nlohmann::json& j, const Order& o);

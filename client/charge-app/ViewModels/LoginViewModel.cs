@@ -26,9 +26,10 @@ public class LoginViewModel
     }
 
 
-    public async Task<bool> LoginAsync()
+    public async Task<int> LoginAsync()
     {
         var req = new LoginReq(Username, Password);
-        return await _userService.Login(req);
+        var res =  await _userService.Login(req);
+        return res.Uid;
     }
 }

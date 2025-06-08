@@ -1,5 +1,6 @@
 
 
+using charge_app.Core.Models;
 using charge_app.ViewModels;
 using Microsoft.UI.Xaml;
 
@@ -39,10 +40,11 @@ public sealed partial class LoginWindow : Window
     // 处理登录逻辑
     private async void Login(object sender, RoutedEventArgs e)
     {
-        bool res = await ViewModel.LoginAsync();
+        int res = await ViewModel.LoginAsync();
 
-        if (res)
+        if (res != -1)
         {
+            UserDesc.Guid = (uint)res;
             AppNotification notification = new AppNotificationBuilder()
                 .AddText("登录成功")
                 .AddText("Explore interactive samples and discover the power of modern Windows UI.")

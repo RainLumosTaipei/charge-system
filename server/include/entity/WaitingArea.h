@@ -23,7 +23,7 @@ public:
     // 添加车辆（生成排队号）
     bool addVehicle(Vehicle& veh) ;
     // 修改充电模式（等候区：重新生成排队号，移到对应队列末尾）
-    bool modifyMode(Vehicle& veh, std::string newMode) ;
+    bool modifyMode(Vehicle& veh, ChargingType newMode) ;
 
     // 修改请求电量（等候区：排队号不变，更新电量和时长）
     bool modifyPower(Vehicle& veh, double newPower) ;

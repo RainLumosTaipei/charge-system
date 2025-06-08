@@ -10,7 +10,7 @@ void Server::schedule() {
         std::vector<std::list<Vehicle>::iterator> toRemove;
 
         for (auto veh = waitingArea.vehicles.begin(); veh != waitingArea.vehicles.end(); ++veh) {
-            std::vector<ChargingPile>& piles = (veh->mode == "F") ? fastPiles : tricklePiles;
+            std::vector<ChargingPile>& piles = (veh->mode == ChargingType::FAST) ? fastPiles : tricklePiles;
             double minTime = DBL_MAX;
             ChargingPile* selected = nullptr;
 
@@ -27,6 +27,12 @@ void Server::schedule() {
 
             if (selected) {
                 selected->addVehicle(*veh, now);
+                for (auto &user:users){
+                    if (user.getUid()==veh->uid){
+                        Order* tmp=new Order(user.getUid(),veh->start,veh->end,veh->mode);
+                        user.addOrder(*tmp);
+                    }
+                }
                 toRemove.push_back(veh);
             }
         }
@@ -38,9 +44,9 @@ void Server::schedule() {
 
 }
 
-Server::Server(int fastNum, int trickleNum, int waitSize) : waitingArea(waitSize) {
-        for (int i = 0; i < fastNum; ++i) fastPiles.emplace_back("Fast", 30);
-        for (int i = 0; i < trickleNum; ++i) tricklePiles.emplace_back("Trickle", 7);
+Server::Server(std::vector<User> &users,int fastNum, int trickleNum, int waitSize) :users(users), waitingArea(waitSize) {
+        for (int i = 0; i < fastNum; ++i) fastPiles.emplace_back(ChargingType::FAST, 30);
+        for (int i = 0; i < trickleNum; ++i) tricklePiles.emplace_back(ChargingType::SLOW, 7);
 
 }
 
@@ -50,7 +56,7 @@ void Server::handleFault(ChargingPile &pile) {
         pile.queue.clear(); // 清空故障桩队列
 
         // 优先调度故障队列到同类型（快充/慢充）的其他正常桩
-        std::vector<ChargingPile>& targetPiles = (pile.type == "Fast") ? fastPiles : tricklePiles;
+        std::vector<ChargingPile>& targetPiles = (pile.type == ChargingType::FAST) ? fastPiles : tricklePiles;
         for (auto& veh : faultyQueue) {
             scheduleVehicle(veh, targetPiles); // 自定义调度函数，确保优先处理故障队列
         }

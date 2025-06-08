@@ -7,23 +7,23 @@
 
 bool WaitingArea::addVehicle(Vehicle &veh) {
     if (vehicles.size() >= maxSize) return false;
-    if (veh.mode == "F")
+    if (veh.mode == ChargingType::FAST)
     {
-        veh.queueNum = "F" + std::to_string(1) ;
+        veh.queueId = fCount ;
         fCount++;
     }
     else
     {
-        veh.queueNum = "T" + std::to_string(1);
+        veh.queueId = tCount;
         tCount++;
     }
     vehicles.push_back(veh);
     return true;
 }
 
-bool WaitingArea::modifyMode(Vehicle &veh, std::string newMode) {
+bool WaitingArea::modifyMode(Vehicle &veh, ChargingType newMode) {
            for (auto it = vehicles.begin(); it != vehicles.end(); ++it) {
-            if (it->queueNum == veh.queueNum) {
+            if (it->queueId == veh.queueId) {
                 veh.mode = newMode;
                 vehicles.erase(it);
                 return addVehicle(veh); // 重新加入（生成新排队号，添加到末尾）
@@ -34,9 +34,9 @@ bool WaitingArea::modifyMode(Vehicle &veh, std::string newMode) {
 
 bool WaitingArea::modifyPower(Vehicle &veh, double newPower) {
             for (auto& v : vehicles) {
-            if (v.queueNum == veh.queueNum) {
+            if (v.queueId == veh.queueId) {
                 v.reqPower = newPower;
-                v.chargeTime = newPower / (v.mode == "F" ? 30 : 7);
+                v.chargeTime = newPower / (v.mode == ChargingType::FAST ? 30 : 7);
                 return true;
             }
         }

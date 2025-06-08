@@ -21,15 +21,18 @@ public:
     UserClient(Server& s, std::string id) : server(s), userId(id) {}
 
     // 提交充电请求
-    Vehicle* submitRequest(std::string mode, double power) ;
+    Vehicle* submitRequest(size_t uid, ChargingType mode, double power) ;
+
+    // 查看充电桩状态
+    void viewPileStatus(nlohmann::json &j) ;
 
     // 修改充电模式（等候区）
-    void modifyMode(std::string queueNum, std::string newMode) ;
+    bool modifyMode(size_t queueNum, ChargingType newMode) ;
     // 修改请求电量（等候区）
-    bool modifyPower(std::string queueNum, double newPower) ;
+    bool modifyPower(size_t queueNum, double newPower) ;
 
     // 取消充电（等候区/充电区）
-    void cancelCharge(std::string queueNum, bool isInCharging);
+    void cancelCharge(size_t queueNum, bool isInCharging);
 };
 
 
