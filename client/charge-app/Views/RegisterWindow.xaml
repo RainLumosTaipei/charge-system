@@ -17,7 +17,7 @@
             Margin="0 64 0 32"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            Text="登录到我们的应用"
+            Text="注册到我们的应用"
             Style="{ThemeResource TitleTextBlockStyle}" />
 
 

@@ -1,9 +1,11 @@
-﻿using charge_app.Core.Helpers;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using charge_app.Core.Helpers;
 using Newtonsoft.Json;
 
 namespace charge_app.Core.Models;
 
-public class ChargingPile
+public class ChargingPile : INotifyPropertyChanged
 {
     public enum ChargingPileType
     {
@@ -18,7 +20,27 @@ public class ChargingPile
     public int Count { get; set; }
     public double TotalTime { get; set; }
     public double ToTalPower { get; set; }
-    public Vehicle[] Queue { get; set; }
+
+    private Vehicle[] _vehicles;
+    public Vehicle[] Queue
+    {
+        get => _vehicles;
+        set
+        {
+            if (_vehicles != value)
+            {
+                _vehicles = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 
 
     [JsonIgnore] public string TextType => Type == ChargingPileType.Fast ? "快充桩" : "慢充桩";

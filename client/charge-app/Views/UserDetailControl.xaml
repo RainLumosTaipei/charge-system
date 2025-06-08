@@ -96,7 +96,7 @@
 
             <ListView
                 x:Name="OrderListView"
-                ItemsSource="{x:Bind ListDetailsMenuItem.Orders}"
+                ItemsSource="{x:Bind ListDetailsMenuItem.Orders, Mode=OneWay}"
                 ItemTemplate="{StaticResource OrderItemTemplate}"
                 SelectionMode="Single"
                 MinWidth="800"
