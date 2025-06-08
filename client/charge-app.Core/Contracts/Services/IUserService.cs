@@ -8,8 +8,8 @@ public interface IUserService
 {
     public Task<IEnumerable<User>> GetUsers();
 
-    public Task<bool> Register(RegisterReq req);
-    public Task<bool> Login(LoginReq req);
+    public Task<RegisterRes> Register(RegisterReq req);
+    public Task<LoginRes> Login(LoginReq req);
 
     public Task<ChargeRes> Charge(ChargeReq req);
 

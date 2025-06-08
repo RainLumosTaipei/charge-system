@@ -2,5 +2,5 @@ namespace charge_app.Core.Res;
 
 public class LoginRes
 {
-    public bool Return { get; set; }
+    public int Uid { get; set; }
 }
