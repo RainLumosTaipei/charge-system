@@ -11,7 +11,7 @@ using std::endl;
 Vehicle* UserClient::submitRequest(size_t uid, ChargingType mode, double power) {
         Vehicle* veh = new Vehicle(uid, mode, power);
         if (server.waitingArea.vehicles.size() < server.waitingArea.maxSize) {
-            veh->order=new Order(uid,0,0,0,FAST);
+            veh->order=new Order(uid,0,0,0,veh->mode);
             for (auto &user:*server.users)if (user.getUid()==veh->uid)user.addOrder(veh->order);
             server.waitingArea.addVehicle(*veh);
             server.schedule();
