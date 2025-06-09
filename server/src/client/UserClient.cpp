@@ -11,7 +11,7 @@ using std::endl;
 Vehicle* UserClient::submitRequest(size_t uid, ChargingType mode, double power) {
         Vehicle* veh = new Vehicle(uid, mode, power);
         if (server.waitingArea.vehicles.size() < server.waitingArea.maxSize) {
-            veh->order=new Order(uid,0,0,0,FAST);
+            veh->order=new Order(uid,0,0,0,veh->mode);
             for (auto &user:*server.users)if (user.getUid()==veh->uid)user.addOrder(veh->order);
             server.waitingArea.addVehicle(*veh);
             server.schedule();
@@ -66,14 +66,14 @@ void UserClient::cancelCharge(size_t orderId) {
                     }
                     else if (pile.queue.size()==2) {
                         if (pile.queue.front().order->getId() == orderId) {
-                            if (pile.queue.front().order->getId() == orderId) {
-                                req->end=now;
-                                req->order->setEnd(now);
-                                pile.queue.erase(pile.queue.begin());
-                            }
-                            req->start = now;
-                            req->end = req->start + req->chargeTime * 3600; // 转换为秒
-                            req->updateOrder();
+                            req->end=now;
+                            req->order->setEnd(now);
+                            pile.queue.erase(pile.queue.begin());
+
+                            Vehicle* tmp=&pile.queue.front();
+                            tmp->start = now;
+                            tmp->end = tmp->start + tmp->chargeTime * 3600; // 转换为秒
+                            tmp->updateOrder();
                         }else if (pile.queue.back().order->getId() == orderId) {
                             pile.queue.erase(pile.queue.end());
                             req->start=now;
