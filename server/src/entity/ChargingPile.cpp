@@ -20,6 +20,7 @@ ChargingPile::ChargingPile(ChargingType t, double p)
 void ChargingPile::addVehicle(Vehicle &veh, time_t now) {
     if (queue.empty()) veh.start = now;
     else  veh.start=queue.back().end;
+    veh.isChanging=true;
     veh.end = veh.start + veh.chargeTime * 3600; // 转换为秒
     veh.order=new Order(veh.uid,veh.totalFee,veh.start,veh.end,veh.mode);
     queue.push_back(veh); // 加入排队（第二个车位）
@@ -50,35 +51,44 @@ void ChargingPile::processCompletion(time_t now) {
 }
 
 void ChargingPile::calculateBill(Vehicle &veh) {
-    struct tm tmStart, tmEnd;
-    localtime_u(&tmStart, &veh.start); // 获取开始时间
-    localtime_u(&tmEnd, &veh.end);     // 获取结束时间
+    //std::cout<<"calcuteBill"<< std::endl;
 
-    double peak = 0, flat = 0, valley = 0; // 分别统计峰时、平时、谷时的电量
+    double peak = 0;
+    double flat = 0;
+    double valley = 0;
+    // 分别统计峰时、平时、谷时的电量
 
     time_t currentTime = veh.start;
-    while (currentTime < veh.end) {
+    time_t currentEndTime = veh.end;
+    // std::cout<<"start"<<veh.start<<std::endl;
+    // std::cout<<"end"<<veh.end<<std::endl;
+    // std::cout<<"current"<<currentTime<<std::endl;
+
+    while (currentTime < currentEndTime) {
         // 计算当前小时内的充电时长（以秒为单位）
-        double remainingTime = difftime(veh.end, currentTime);
+        double remainingTime = difftime(currentEndTime, currentTime);//剩余时间
         double hourDurationInSeconds = std::min(remainingTime, 3600.0);
         // 转换为小时数
         double hourDuration = hourDurationInSeconds / 3600;
 
         //计算当前这个小时的用电费用
         struct tm tmCurrent;//临时变量
-        localtime_u(&tmCurrent, &currentTime);//每个小时算一次电费
+        localtime_s(&tmCurrent, &currentTime);//每个小时算一次电费
         int currentHour = tmCurrent.tm_hour;
         // 峰时（10-15, 18-21）
         if ((currentHour >= 10 && currentHour < 15) || (currentHour >= 18 && currentHour < 21)) {
-            peak += hourDuration * veh.reqPower;
+            peak += hourDuration *(veh.mode == ChargingType::FAST ? 30 : 7);//根据模式计算每小时充电量
+            // std::cout<<"peak "<<peak<< std::endl;
         }
-            // 平时（7-10, 15-18, 21-23）
+        // 平时（7-10, 15-18, 21-23）
         else if ((currentHour >= 7 && currentHour < 10) || (currentHour >= 15 && currentHour < 18) || (currentHour >= 21 && currentHour < 23)) {
-            flat += hourDuration * veh.reqPower;
+            flat += hourDuration*(veh.mode == ChargingType::FAST ? 30 : 7) ;
+            // std::cout<<"flat "<<flat<< std::endl;
         }
-            // 谷时（23-7）
+        // 谷时（23-7）
         else {
-            valley += hourDuration * veh.reqPower;
+            valley += hourDuration * (veh.mode == ChargingType::FAST ? 30 : 7);
+            // std::cout<<"valley "<<valley<< std::endl;
         }
 
         // 动态更新时间
@@ -87,14 +97,9 @@ void ChargingPile::calculateBill(Vehicle &veh) {
     }
 
     // 计算总电费
-    double currentElecFee = 0,currentServFee = 0,currentFee = 0;
-    currentElecFee = peak * 1.0 + flat * 0.7 + valley * 0.4;
-    veh.elecFee += currentElecFee;
-    currentServFee = 0.8 * veh.reqPower; // 服务费固定为0.8倍请求电量
-    veh.servFee += currentServFee;
-    double currentTotalFee = currentElecFee + currentServFee;//本次计算的总费用
-    veh.totalFee += currentTotalFee;//该车辆的总费用
-
+    veh.elecFee = peak * 1.0 + flat * 0.7 + valley * 0.4;
+    veh.servFee = 0.8 * veh.reqPower; // 服务费固定为0.8倍请求电量
+    veh.totalFee = veh.elecFee + veh.servFee;
 }
 
 

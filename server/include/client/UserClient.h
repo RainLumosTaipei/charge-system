@@ -32,7 +32,7 @@ public:
     bool modifyPower(size_t queueNum, double newPower) ;
 
     // 取消充电（等候区/充电区）
-    void cancelCharge(size_t queueNum, bool isInCharging);
+    void cancelCharge(size_t queueNum);
 };
 
 

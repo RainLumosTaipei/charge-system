@@ -89,6 +89,7 @@ void Server::scheduleVehicle(time_t now, Vehicle &veh, std::vector<ChargingPile>
         double minTime = DBL_MAX;
         ChargingPile* selected = nullptr;
         veh.order->setEnd(now);
+        veh.isChanging=false;
         veh.chargeTime=(static_cast<double>(veh.end)-veh.start)/3600;
         for (auto& p : piles) {
             if (p.isFaulty || !p.hasSpace()) continue;

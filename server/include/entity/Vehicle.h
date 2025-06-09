@@ -15,6 +15,7 @@ public:
     size_t uid;
     size_t id;
     ChargingType mode;       // F(快充) / T(慢充)
+    bool isChanging;    //正在充电
     size_t queueId;   // 排队号
     double reqPower;   // 请求电量（度）
     double chargeTime; // 充电时长（小时，reqPower / 功率）

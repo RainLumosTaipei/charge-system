@@ -43,13 +43,9 @@ bool WaitingArea::modifyPower(Vehicle &veh, double newPower) {
         return false;
 }
 
-bool WaitingArea::cancelCharge(std::list<Vehicle>::iterator &veh, bool isInCharging) {
-    if (isInCharging) {
-        return addVehicle(*veh); // 重新加入等候区
-    } else {
-        vehicles.erase(veh);
-        return true;
-    }
+bool WaitingArea::cancelCharge(std::list<Vehicle>::iterator &veh) {
+    vehicles.erase(veh);
+    return true;
 }
 
 

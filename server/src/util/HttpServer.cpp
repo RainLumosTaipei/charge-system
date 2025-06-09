@@ -128,8 +128,7 @@ void HttpServer::start() {
     server.Post("/user/charge/update/state",[&](const httplib::Request &req, httplib::Response &res){
         nlohmann::json body=nlohmann::json::parse(req.body);
         size_t queueNum = body["queueId"];
-        bool isInCharging = body["isCharging"];
-        charger.cancelCharge(queueNum,isInCharging);
+        charger.cancelCharge(queueNum);
 
         nlohmann::json j;
         j["return"] = true;
