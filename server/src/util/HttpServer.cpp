@@ -118,7 +118,7 @@ void HttpServer::start() {
         else
         {
             j["return"]=true;
-            j["queueId"]=veh->queueId;
+            j["queueId"]=veh->order->getId();
             j["chargeTime"]=veh->chargeTime;
         }
         cout << j.dump() << endl;
@@ -127,8 +127,8 @@ void HttpServer::start() {
 
     server.Post("/user/charge/update/state",[&](const httplib::Request &req, httplib::Response &res){
         nlohmann::json body=nlohmann::json::parse(req.body);
-        size_t queueNum = body["queueId"];
-        charger.cancelCharge(queueNum);
+        size_t orderId = body["queueId"];
+        charger.cancelCharge(orderId);
 
         nlohmann::json j;
         j["return"] = true;
@@ -140,11 +140,11 @@ void HttpServer::start() {
     {
         chargeServer.schedule();
         nlohmann::json body=nlohmann::json::parse(req.body);
-        size_t queueNum = body["queueId"];
-        double chargeTime = body["amount"];
+        size_t orderId = body["queueId"];
+        double amount = body["amount"];
 
         nlohmann::json j;
-        if (charger.modifyPower(queueNum, chargeTime))j["return"]=true;
+        if (charger.modifyPower(orderId, amount))j["return"]=true;
         else j["return"]=false;
         cout << j.dump() << endl;
         res.set_content(j.dump(), "application/json");
@@ -153,11 +153,11 @@ void HttpServer::start() {
     server.Post("/user/charge/update/type",[&](const httplib::Request &req, httplib::Response &res){
         chargeServer.schedule();
         nlohmann::json body=nlohmann::json::parse(req.body);
-        size_t queueNum = body["queueId"];
+        size_t orderId = body["queueId"];
         ChargingType chargeMode = body["type"];
 
         nlohmann::json j;
-        if (charger.modifyMode(queueNum, chargeMode))j["return"]=true;
+        if (charger.modifyMode(orderId, chargeMode))j["return"]=true;
         else j["return"]=false;
         cout << j.dump() << endl;
         res.set_content(j.dump(), "application/json");

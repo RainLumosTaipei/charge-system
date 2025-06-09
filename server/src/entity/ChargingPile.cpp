@@ -21,8 +21,9 @@ void ChargingPile::addVehicle(Vehicle &veh, time_t now) {
     if (queue.empty()) veh.start = now;
     else  veh.start=queue.back().end;
     veh.isChanging=true;
+    veh.totalFee=0;
     veh.end = veh.start + veh.chargeTime * 3600; // 转换为秒
-    veh.order=new Order(veh.uid,veh.totalFee,veh.start,veh.end,veh.mode);
+    veh.updateOrder();
     queue.push_back(veh); // 加入排队（第二个车位）
     count++;
     totalTime += veh.chargeTime;
@@ -73,7 +74,7 @@ void ChargingPile::calculateBill(Vehicle &veh) {
 
         //计算当前这个小时的用电费用
         struct tm tmCurrent;//临时变量
-        localtime_s(&tmCurrent, &currentTime);//每个小时算一次电费
+        localtime_u(&tmCurrent, &currentTime);//每个小时算一次电费
         int currentHour = tmCurrent.tm_hour;
         // 峰时（10-15, 18-21）
         if ((currentHour >= 10 && currentHour < 15) || (currentHour >= 18 && currentHour < 21)) {
