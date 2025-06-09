@@ -32,7 +32,7 @@ public:
 
 private:
     // 辅助函数：调度单个车辆到目标桩集合
-    void scheduleVehicle(Vehicle& veh, std::vector<ChargingPile>& piles);
+    void scheduleVehicle(time_t now,Vehicle& veh, std::vector<ChargingPile>& piles);
 };
 
 
