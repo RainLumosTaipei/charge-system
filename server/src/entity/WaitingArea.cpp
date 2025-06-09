@@ -36,8 +36,8 @@ bool WaitingArea::modifyMode(Vehicle &veh, ChargingType newMode) {
 bool WaitingArea::modifyPower(Vehicle &veh, double newPower) {
             for (auto& v : vehicles) {
             if (v.queueId == veh.queueId) {
-                v.reqPower = newPower;
-                v.chargeTime = newPower / (v.mode == FAST ? 30 : 7);
+                veh.reqPower = newPower;
+                veh.chargeTime = newPower / (v.mode == FAST ? 30 : 7);
                 return true;
             }
         }
