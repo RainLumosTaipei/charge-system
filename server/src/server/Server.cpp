@@ -13,7 +13,7 @@ void Server::schedule() {
         for (auto& pile : tricklePiles)pile.processCompletion(now);
 
         for (auto veh = waitingArea.vehicles.begin(); veh != waitingArea.vehicles.end(); ++veh) {
-            std::vector<ChargingPile>& piles = (veh->mode == ChargingType::FAST) ? fastPiles : tricklePiles;
+            std::vector<ChargingPile>& piles = (veh->mode == FAST) ? fastPiles : tricklePiles;
             double minTime = DBL_MAX;
             ChargingPile* selected = nullptr;
 
@@ -30,7 +30,6 @@ void Server::schedule() {
 
             if (selected) {
                 selected->addVehicle(*veh, now);
-                for (auto &user:*users)if (user.getUid()==veh->uid)user.addOrder(veh->order);
                 toRemove.push_back(veh);
             }
         }

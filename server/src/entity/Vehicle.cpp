@@ -19,6 +19,6 @@ void to_json(nlohmann::json& j, const Vehicle& v){
     j["servFee"] = v.servFee;
     j["elecFee"] = v.elecFee;
     j["totalFee"] = v.totalFee;
-    j["queueId"] = v.queueId;
+    j["queueId"] = v.order->getId();
     j["reqPower"] = v.reqPower;
 }

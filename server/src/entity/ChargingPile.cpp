@@ -21,8 +21,9 @@ void ChargingPile::addVehicle(Vehicle &veh, time_t now) {
     if (queue.empty()) veh.start = now;
     else  veh.start=queue.back().end;
     veh.isChanging=true;
+    veh.totalFee=0;
     veh.end = veh.start + veh.chargeTime * 3600; // 转换为秒
-    veh.order=new Order(veh.uid,veh.totalFee,veh.start,veh.end,veh.mode);
+    veh.updateOrder();
     queue.push_back(veh); // 加入排队（第二个车位）
     count++;
     totalTime += veh.chargeTime;

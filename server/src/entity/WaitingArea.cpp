@@ -25,6 +25,7 @@ bool WaitingArea::modifyMode(Vehicle &veh, ChargingType newMode) {
            for (auto it = vehicles.begin(); it != vehicles.end(); ++it) {
             if (it->queueId == veh.queueId) {
                 veh.mode = newMode;
+                veh.updateOrder();
                 vehicles.erase(it);
                 return addVehicle(veh); // 重新加入（生成新排队号，添加到末尾）
             }
@@ -36,7 +37,7 @@ bool WaitingArea::modifyPower(Vehicle &veh, double newPower) {
             for (auto& v : vehicles) {
             if (v.queueId == veh.queueId) {
                 v.reqPower = newPower;
-                v.chargeTime = newPower / (v.mode == ChargingType::FAST ? 30 : 7);
+                v.chargeTime = newPower / (v.mode == FAST ? 30 : 7);
                 return true;
             }
         }
