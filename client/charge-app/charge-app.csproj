@@ -22,7 +22,9 @@
     <None Remove="Views\ChargePileDialog.xaml" />
     <None Remove="Views\RegisterDialog.xaml" />
     <None Remove="Views\UpdateChargeAmountPage.xaml" />
+    <None Remove="Views\UpdateChargeStatePage.xaml" />
     <None Remove="Views\UpdateChargeTimePage.xaml" />
+    <None Remove="Views\UpdateChargeTypePage.xaml" />
     <None Remove="Views\UserControl1.xaml" />
   </ItemGroup>
 
@@ -47,6 +49,12 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\UpdateChargeStatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\UpdateChargeTypePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\UpdateChargeTimePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

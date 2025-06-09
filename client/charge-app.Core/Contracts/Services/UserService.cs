@@ -103,7 +103,7 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<bool> UpdateChargeState(UpdateChargeSteteReq req)
+    public async Task<bool> UpdateChargeState(UpdateChargeStateReq req)
     {
         try
         {

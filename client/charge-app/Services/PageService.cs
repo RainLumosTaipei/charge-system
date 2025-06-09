@@ -23,6 +23,8 @@ public class PageService : IPageService
         Configure<ChargeViewModel, ChargePage>();
         Configure<UpdateChargeAmountViewModel, UpdateChargeAmountPage>();
         Configure<UpdateChargeTimeViewModel, UpdateChargeTimePage>();
+        Configure<UpdateChargeTypeViewModel, UpdateChargeTypePage>();
+        Configure<UpdateChargeStateViewModel, UpdateChargeStatePage>();
     }
 
     public Type GetPageType(string key)

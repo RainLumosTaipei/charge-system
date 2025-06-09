@@ -1,19 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Microsoft.UI.Xaml;
+
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using charge_app.Contracts.Services;
+using charge_app.Core.Models;
+using charge_app.Core.Reqs;
 using charge_app.ViewModels;
+using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppNotifications;
 using Microsoft.Windows.AppNotifications.Builder;
 
@@ -24,18 +16,20 @@ namespace charge_app.Views;
 /// <summary>
 /// An empty page that can be used on its own or navigated to within a Frame.
 /// </summary>
-public sealed partial class UpdateChargeAmountPage : Page
+public sealed partial class UpdateChargeStatePage : Page
 {
-    public UpdateChargeAmountPage()
-    {
-        InitializeComponent();
-        ViewModel = App.GetService<UpdateChargeAmountViewModel>();
-    }
-
-    public UpdateChargeAmountViewModel ViewModel
+    public UpdateChargeStateViewModel ViewModel
     {
         get;
+        private set;
     }
+
+    public UpdateChargeStatePage()
+    {
+        InitializeComponent();
+        ViewModel = App.GetService<UpdateChargeStateViewModel>();
+    }
+
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
@@ -51,9 +45,12 @@ public sealed partial class UpdateChargeAmountPage : Page
         }
     }
 
-    private async void UpdateAmount(object sender, RoutedEventArgs e)
+    private async void UpdateState(object sender, RoutedEventArgs e)
     {
-        var res = await ViewModel.UpdateChargeAmount();
+        var toggleSwitch = sender as ToggleSwitch;
+        if (toggleSwitch == null) return;
+        var isEnabled = toggleSwitch.IsOn;
+        var res= await ViewModel.UpdateState(isEnabled);
         if (res)
         {
             var notification = new AppNotificationBuilder()

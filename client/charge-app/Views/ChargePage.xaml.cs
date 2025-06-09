@@ -5,6 +5,8 @@ using charge_app.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Windows.AppNotifications;
+using Microsoft.Windows.AppNotifications.Builder;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -41,15 +43,34 @@ public sealed partial class ChargePage : Page
     private async void Charge(object sender, RoutedEventArgs e)
     {
         var res = await ViewModel.Charge();
+        if (res.Return)
+        {
+            UserDesc.GQueueId = res.QueneId;
+            var notification = new AppNotificationBuilder()
+                .AddText("修改成功")
+                .BuildNotification();
+
+            AppNotificationManager.Default.Show(notification);
+        }
+        else
+        {
+            var notification = new AppNotificationBuilder()
+                .AddText("修改失败")
+                .BuildNotification();
+
+            AppNotificationManager.Default.Show(notification);
+        }
     }
 
     private void FastType(object sender, RoutedEventArgs e)
     {
         ViewModel.Req.Type = ChargingPile.ChargingPileType.Fast;
+        DropDownButton.Content = "快充";
     }
 
     private void SlowType(object sender, RoutedEventArgs e)
     {
         ViewModel.Req.Type = ChargingPile.ChargingPileType.Slow;
+        DropDownButton.Content = "慢充";
     }
 }

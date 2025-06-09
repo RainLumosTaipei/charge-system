@@ -9,6 +9,26 @@
     mc:Ignorable="d">
 
     <Grid>
+        <StackPanel Padding="48,24,24,0">
 
+            <TextBlock
+                Margin="{StaticResource SmallTopMargin}"
+                Style="{StaticResource DetailSubTitleStyle}"
+                Text="充电请求额度" />
+            <TextBox
+                Margin="0 16 0 0"
+                MaxWidth="400"
+                HorizontalAlignment="Left"
+                Text="{x:Bind ViewModel.Req.Amount, Mode=TwoWay}"
+            />
+
+        </StackPanel>
+
+        <Button
+            Margin="48,0,8,0"
+            MinWidth="200"
+            Content="提交"
+            Click="UpdateAmount"
+            Style="{StaticResource AccentButton}" />
     </Grid>
 </Page>

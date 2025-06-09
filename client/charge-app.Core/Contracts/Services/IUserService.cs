@@ -15,6 +15,6 @@ public interface IUserService
 
     public Task<bool> UpdateChargeTime(UpdateChargeTimeReq req);
     public Task<bool> UpdateChargeAmount(UpdateChargeAmountReq req);
-    public Task<bool> UpdateChargeState(UpdateChargeSteteReq req);
+    public Task<bool> UpdateChargeState(UpdateChargeStateReq req);
     public Task<bool> UpdateChargeType(UpdateChargeTypeReq req);
 }

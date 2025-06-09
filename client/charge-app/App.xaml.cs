@@ -84,6 +84,10 @@ public partial class App : Application
             services.AddTransient<UpdateChargeAmountViewModel>();
             services.AddTransient<UpdateChargeTimePage>();
             services.AddTransient<UpdateChargeTimeViewModel>();
+            services.AddTransient<UpdateChargeTypePage>();
+            services.AddTransient<UpdateChargeTypeViewModel>();
+            services.AddTransient<UpdateChargeStatePage>();
+            services.AddTransient<UpdateChargeStateViewModel>();
 
             services.AddTransient<OperationViewModel>();
             services.AddTransient<OperationPage>();

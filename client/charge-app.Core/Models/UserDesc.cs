@@ -13,6 +13,12 @@ public class UserDesc  : INotifyPropertyChanged
         set;
     } = 0;
 
+    public static uint GQueueId
+    {
+        get;
+        set;
+    } = 0;
+
     public uint Id { get; set; }
     public string Name { get; set; }
 

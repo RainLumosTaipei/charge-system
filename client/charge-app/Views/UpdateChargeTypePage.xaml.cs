@@ -1,19 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Microsoft.UI.Xaml;
+
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using charge_app.Contracts.Services;
+using charge_app.Core.Models;
 using charge_app.ViewModels;
+using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppNotifications;
 using Microsoft.Windows.AppNotifications.Builder;
 
@@ -24,15 +15,15 @@ namespace charge_app.Views;
 /// <summary>
 /// An empty page that can be used on its own or navigated to within a Frame.
 /// </summary>
-public sealed partial class UpdateChargeAmountPage : Page
+public sealed partial class UpdateChargeTypePage : Page
 {
-    public UpdateChargeAmountPage()
+    public UpdateChargeTypePage()
     {
         InitializeComponent();
-        ViewModel = App.GetService<UpdateChargeAmountViewModel>();
+        ViewModel = App.GetService<UpdateChargeTypeViewModel>();
     }
 
-    public UpdateChargeAmountViewModel ViewModel
+    public UpdateChargeTypeViewModel ViewModel
     {
         get;
     }
@@ -51,9 +42,35 @@ public sealed partial class UpdateChargeAmountPage : Page
         }
     }
 
-    private async void UpdateAmount(object sender, RoutedEventArgs e)
+    private async void FastType(object sender, RoutedEventArgs e)
     {
-        var res = await ViewModel.UpdateChargeAmount();
+        ViewModel.Req.Type = ChargingPile.ChargingPileType.Fast;
+        DropDownButton.Content = "快充";
+        var res = await ViewModel.UpdateType();
+        if (res)
+        {
+            var notification = new AppNotificationBuilder()
+                .AddText("修改成功")
+                .BuildNotification();
+
+            AppNotificationManager.Default.Show(notification);
+        }
+        else
+        {
+            var notification = new AppNotificationBuilder()
+                .AddText("修改失败")
+                .BuildNotification();
+
+            AppNotificationManager.Default.Show(notification);
+        }
+    }
+
+    private async void SlowType(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Req.Type = ChargingPile.ChargingPileType.Slow;
+        DropDownButton.Content = "慢充";
+
+        var res = await ViewModel.UpdateType();
         if (res)
         {
             var notification = new AppNotificationBuilder()

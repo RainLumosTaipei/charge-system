@@ -1,7 +1,7 @@
 namespace charge_app.Core.Reqs;
 
-public class UpdateChargeSteteReq
+public class UpdateChargeStateReq
 {
-    public int QueueId { get; set; }
+    public uint QueueId { get; set; }
     public bool IsCharging { get; set; }
 }
