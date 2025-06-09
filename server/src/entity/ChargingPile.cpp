@@ -73,7 +73,7 @@ void ChargingPile::calculateBill(Vehicle &veh) {
 
         //计算当前这个小时的用电费用
         struct tm tmCurrent;//临时变量
-        localtime_s(&tmCurrent, &currentTime);//每个小时算一次电费
+        localtime_u(&tmCurrent, &currentTime);//每个小时算一次电费
         int currentHour = tmCurrent.tm_hour;
         // 峰时（10-15, 18-21）
         if ((currentHour >= 10 && currentHour < 15) || (currentHour >= 18 && currentHour < 21)) {
