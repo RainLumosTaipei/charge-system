@@ -28,7 +28,7 @@ public:
     // 修改请求电量（等候区：排队号不变，更新电量和时长）
     bool modifyPower(Vehicle& veh, double newPower) ;
     // 取消充电（等候区：移除；充电区：重新加入等候区）
-    bool cancelCharge(std::list<Vehicle>::iterator& veh, bool isInCharging);
+    bool cancelCharge(std::list<Vehicle>::iterator& veh);
 };
 
 #endif //CHARGE_SYSTEM_WAITINGAREA_H
