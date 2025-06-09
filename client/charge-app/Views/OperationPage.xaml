@@ -14,7 +14,7 @@
             animations:Connected.ListItemElementName="itemThumbnail"
             animations:Connected.ListItemKey="animationKeyContentGrid"
             DesiredWidth="280"
-            ItemHeight="160"
+            ItemHeight="120"
             Margin="24 32 24 32"
             IsItemClickEnabled="True"
             ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
@@ -42,11 +42,13 @@
                                 <TextBlock
                                     Margin="{StaticResource XXSmallTopMargin}"
                                     HorizontalAlignment="Left"
+                                    FontWeight="Bold"
                                     Style="{ThemeResource BodyTextStyle}"
                                     Text="{x:Bind Title}" />
                                 <TextBlock
                                     Margin="{StaticResource SmallTopMargin}"
                                     HorizontalAlignment="Left"
+                                    FontSize="14"
                                     Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
                                     Style="{ThemeResource BodyTextStyle}"
                                     TextWrapping="WrapWholeWords"

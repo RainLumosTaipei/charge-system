@@ -46,6 +46,7 @@ public sealed partial class ChargePage : Page
         if (res.Return)
         {
             UserDesc.GQueueId = res.QueneId;
+            UserDesc.GIsCharging = true;
             var notification = new AppNotificationBuilder()
                 .AddText("修改成功")
                 .BuildNotification();
