@@ -23,7 +23,14 @@ public class ChargingPile : INotifyPropertyChanged
 
     public double Power { get; set; }
     public ChargingPileType Type { get; set; }
-    public bool IsFaulty { get; set; }
+
+    public bool IsFaulty
+    {
+        get;
+        set;
+    }
+
+
     public int Count { get; set; }
     public double TotalTime { get; set; }
     public double ToTalPower { get; set; }
@@ -55,7 +62,7 @@ public class ChargingPile : INotifyPropertyChanged
     [JsonIgnore] public string TextId => $"充电桩 {Id}";
     [JsonIgnore] public string TextTotalTime => $"{TotalTime:F2} 小时";
     [JsonIgnore] public string TextTotalPower => $"{ToTalPower:F2} 度";
-    [JsonIgnore] public string TextIsFaulty => IsFaulty ? "故障" : "正常";
+    [JsonIgnore] public string TextIsFaulty => !IsFaulty ? "故障" : "正常";
     [JsonIgnore] public char Symbol  => '\uEC3B';
     [JsonIgnore] public string SymbolName  => "ChargingPile";
 

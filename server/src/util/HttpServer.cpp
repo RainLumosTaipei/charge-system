@@ -216,7 +216,7 @@ void HttpServer::start() {
         else if (id==200003) aim=&chargeServer.tricklePiles[1];
         else aim=&chargeServer.tricklePiles[2];
 
-        if (state)chargeServer.handleFault(*aim);
+        if (!state)chargeServer.handleFault(*aim);
         else chargeServer.handleOpen(*aim);
 
         nlohmann::json j;

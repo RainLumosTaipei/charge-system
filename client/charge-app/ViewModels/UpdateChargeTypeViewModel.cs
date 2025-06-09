@@ -1,5 +1,6 @@
 using charge_app.Contracts.ViewModels;
 using charge_app.Core.Contracts.Services;
+using charge_app.Core.Models;
 using charge_app.Core.Reqs;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -26,6 +27,7 @@ public class UpdateChargeTypeViewModel : ObservableRecipient, INavigationAware
 
     public async Task<bool> UpdateType()
     {
+        Req.QueueId = UserDesc.GQueueId;
         return await UserService.UpdateChargeType(Req);
     }
 }

@@ -111,7 +111,7 @@ void to_json(nlohmann::json& j, const ChargingPile& pile){
     j["power"] = pile.power;
     j["count"] = pile.count;
     j["type"] = pile.type;
-    j["isFaulty"] = pile.isFaulty;
+    j["isFaulty"] = !pile.isFaulty;
     j["queue"] = pile.queue;
     j["id"] = pile.id;
 }

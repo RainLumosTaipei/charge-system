@@ -19,8 +19,8 @@
                 Text="充电请求状态" />
 
             <ToggleSwitch
+                Margin="0,16,0,0"
                 IsOn="{x:Bind models:UserDesc.GIsCharging, Mode=TwoWay}"
-                Margin="0 16 0 0"
                 OffContent="已停用"
                 OnContent="已启用"
                 Toggled="UpdateState" />

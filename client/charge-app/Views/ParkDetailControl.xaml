@@ -130,7 +130,7 @@
                 <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListDetailsMenuItem.TextIsFaulty, Mode=OneWay}" />
 
                 <ToggleSwitch
-                    IsOn="True"
+                    IsOn="{x:Bind ListDetailsMenuItem.IsFaulty, Mode=TwoWay}"
                     OffContent="已停用"
                     OnContent="已启用"
                     Toggled="UpdatePileState"
