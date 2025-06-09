@@ -74,7 +74,7 @@ void ChargingPile::calculateBill(Vehicle &veh) {
 
         //计算当前这个小时的用电费用
         struct tm tmCurrent;//临时变量
-        localtime_u(&tmCurrent, &currentTime);//每个小时算一次电费
+        localtime_s(&tmCurrent, &currentTime);//每个小时算一次电费
         int currentHour = tmCurrent.tm_hour;
         // 峰时（10-15, 18-21）
         if ((currentHour >= 10 && currentHour < 15) || (currentHour >= 18 && currentHour < 21)) {
@@ -98,8 +98,8 @@ void ChargingPile::calculateBill(Vehicle &veh) {
     }
 
     // 计算总电费
-    veh.elecFee = peak * 1.0 + flat * 0.7 + valley * 0.4;
-    veh.servFee = 0.8 * veh.reqPower; // 服务费固定为0.8倍请求电量
+    veh.elecFee += peak * 1.0 + flat * 0.7 + valley * 0.4;
+    veh.servFee += (peak+flat+valley)*0.8;// 服务费固定为0.8倍请求电量
     veh.totalFee = veh.elecFee + veh.servFee;
 }
 
