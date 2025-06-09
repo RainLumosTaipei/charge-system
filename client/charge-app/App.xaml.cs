@@ -69,12 +69,24 @@ public partial class App : Application
             services.AddSingleton<INavigationService, NavigationService>();
 
             // Core Services
+            services.AddSingleton<ISampleDataService, SampleDataService>();
             services.AddSingleton<IFileService, FileService>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IOrderService, OrderService>();
+            services.AddSingleton<IOperationService, OperationService>();
             services.AddSingleton<IChargingPileService, ChargingPileService>();
 
             // Views and ViewModels
+
+            services.AddTransient<ChargeViewModel>();
+            services.AddTransient<ChargePage>();
+            services.AddTransient<UpdateChargeAmountPage>();
+            services.AddTransient<UpdateChargeAmountViewModel>();
+            services.AddTransient<UpdateChargeTimePage>();
+            services.AddTransient<UpdateChargeTimeViewModel>();
+
+            services.AddTransient<OperationViewModel>();
+            services.AddTransient<OperationPage>();
             services.AddTransient<LoginViewModel>();
             services.AddTransient<ChargePileViewModel>();
             services.AddTransient<RegisterViewModel>();

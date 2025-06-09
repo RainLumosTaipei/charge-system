@@ -19,6 +19,10 @@ public class PageService : IPageService
         Configure<ParkViewModel, ParkPage>();
         Configure<OrderViewModel, OrderPage>();
         Configure<SettingsViewModel, SettingsPage>();
+        Configure<OperationViewModel, OperationPage>();
+        Configure<ChargeViewModel, ChargePage>();
+        Configure<UpdateChargeAmountViewModel, UpdateChargeAmountPage>();
+        Configure<UpdateChargeTimeViewModel, UpdateChargeTimePage>();
     }
 
     public Type GetPageType(string key)

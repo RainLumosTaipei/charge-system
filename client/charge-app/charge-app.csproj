@@ -18,8 +18,11 @@
   <ItemGroup>
     <None Remove="Styles\Button.xaml" />
     <None Remove="Views\BlankPage1.xaml" />
+    <None Remove="Views\ChargePage.xaml" />
     <None Remove="Views\ChargePileDialog.xaml" />
     <None Remove="Views\RegisterDialog.xaml" />
+    <None Remove="Views\UpdateChargeAmountPage.xaml" />
+    <None Remove="Views\UpdateChargeTimePage.xaml" />
     <None Remove="Views\UserControl1.xaml" />
   </ItemGroup>
 
@@ -29,6 +32,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Animations" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.231008000" />
@@ -43,6 +47,15 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\UpdateChargeTimePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\UpdateChargeAmountPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\ChargePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\ChargePileDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

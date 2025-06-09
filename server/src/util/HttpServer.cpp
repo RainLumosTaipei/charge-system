@@ -136,7 +136,7 @@ void HttpServer::start() {
         res.set_content(j.dump(),"application/json");
     });
 
-    server.Post("/user/charge/update",[&](const httplib::Request &req, httplib::Response &res)//仅支持对未开始充电的车辆进行修改
+    server.Post("/user/charge/update/time",[&](const httplib::Request &req, httplib::Response &res)//仅支持对未开始充电的车辆进行修改
     {
         chargeServer.schedule();
         nlohmann::json body=nlohmann::json::parse(req.body);
@@ -149,11 +149,11 @@ void HttpServer::start() {
         res.set_content(j.dump(), "application/json");
     });
 
-    server.Post("/user/mode/update",[&](const httplib::Request &req, httplib::Response &res){
+    server.Post("/user/charge/update/type",[&](const httplib::Request &req, httplib::Response &res){
         chargeServer.schedule();
         nlohmann::json body=nlohmann::json::parse(req.body);
         size_t queueNum = body["queueId"];
-        ChargingType chargeMode = body["chargeMode"];
+        ChargingType chargeMode = body["type"];
 
         nlohmann::json j;
         if (charger.modifyMode(queueNum, chargeMode))j["return"]=true;
