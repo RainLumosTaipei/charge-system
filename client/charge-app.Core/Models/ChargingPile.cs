@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using charge_app.Core.Helpers;
 using Newtonsoft.Json;
@@ -13,7 +14,13 @@ public class ChargingPile : INotifyPropertyChanged
         Fast = 1
     }
 
-    public uint Id { get; set; }
+
+    public uint Id
+    {
+        get;
+        set;
+    }
+
     public double Power { get; set; }
     public ChargingPileType Type { get; set; }
     public bool IsFaulty { get; set; }
@@ -21,8 +28,8 @@ public class ChargingPile : INotifyPropertyChanged
     public double TotalTime { get; set; }
     public double ToTalPower { get; set; }
 
-    private Vehicle[] _vehicles;
-    public Vehicle[] Queue
+    private ObservableCollection<Vehicle> _vehicles;
+    public ObservableCollection<Vehicle> Queue
     {
         get => _vehicles;
         set
@@ -35,9 +42,9 @@ public class ChargingPile : INotifyPropertyChanged
         }
     }
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public event PropertyChangedEventHandler PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

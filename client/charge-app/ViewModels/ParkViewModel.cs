@@ -15,7 +15,7 @@ public partial class ParkViewModel : ObservableRecipient, INavigationAware
     [ObservableProperty]
     private ChargingPile? selected;
 
-    public ObservableCollection<ChargingPile> PileItems { get; private set; } = new ObservableCollection<ChargingPile>();
+    public ObservableCollection<ChargingPile> PileItems { get; private set; } = new ();
 
     public ParkViewModel(IChargingPileService chargingPileService)
     {

@@ -36,7 +36,7 @@
             </Grid.ColumnDefinitions>
 
             <Button
-                Content="登录"
+                Content="注册"
                 Style="{StaticResource AccentButton}"
                 Click="Register"
                 Grid.Column="0"
