@@ -49,13 +49,16 @@ Server::Server(std::vector<User> &users,int fastNum, int trickleNum, int waitSiz
 
 void Server::handleFault(ChargingPile &pile) {
         pile.isFaulty = true;
+        time_t now = time(nullptr);
+        for (auto& pile : fastPiles)pile.processCompletion(now);
+        for (auto& pile : tricklePiles)pile.processCompletion(now);
         std::vector<Vehicle> faultyQueue = pile.queue;
         pile.queue.clear(); // 清空故障桩队列
 
         // 优先调度故障队列到同类型（快充/慢充）的其他正常桩
         std::vector<ChargingPile>& targetPiles = (pile.type == ChargingType::FAST) ? fastPiles : tricklePiles;
         for (auto& veh : faultyQueue) {
-            scheduleVehicle(veh, targetPiles); // 自定义调度函数，确保优先处理故障队列
+            scheduleVehicle(now,veh, targetPiles); // 自定义调度函数，确保优先处理故障队列
         }
 }
 
@@ -82,14 +85,11 @@ void Server::handleOpen(ChargingPile &pile) {
     }
 }
 
-void Server::scheduleVehicle(Vehicle &veh, std::vector<ChargingPile> &piles) {
-        time_t now = time(nullptr);
-        for (auto& pile : fastPiles)pile.processCompletion(now);
-        for (auto& pile : tricklePiles)pile.processCompletion(now);
+void Server::scheduleVehicle(time_t now, Vehicle &veh, std::vector<ChargingPile> &piles) {
         double minTime = DBL_MAX;
         ChargingPile* selected = nullptr;
         veh.order->setEnd(now);
-        veh.chargeTime=(veh.end-veh.start)/3600;
+        veh.chargeTime=(static_cast<double>(veh.end)-veh.start)/3600;
         for (auto& p : piles) {
             if (p.isFaulty || !p.hasSpace()) continue;
             double waitTime = (p.queue.empty()) ? 0 : (p.queue.back().end - now);
