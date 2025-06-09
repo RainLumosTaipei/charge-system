@@ -16,7 +16,7 @@
                 Style="{StaticResource DetailSubTitleStyle}"
                 Text="充电请求额度" />
             <TextBox
-                MaxWidth="400"
+                Width="300"
                 Margin="0,16,0,0"
                 HorizontalAlignment="Left"
                 Text="{x:Bind ViewModel.Req.Amount, Mode=TwoWay}" />
@@ -26,11 +26,10 @@
         <Button
             x:Name="Button"
             MinWidth="200"
-            Style="{StaticResource AccentButton}"
-            Canvas.ZIndex="1"
             Margin="48,0,8,0"
+            Canvas.ZIndex="1"
             Click="UpdateAmount"
             Content="提交"
-             />
+            Style="{StaticResource AccentButton}" />
     </Grid>
 </Page>

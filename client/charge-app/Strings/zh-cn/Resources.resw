@@ -113,7 +113,7 @@
     <value>https://github.com/RainLumosTaipei/charge-system</value>
   </data>
   <data name="Shell_Operation.Content" xml:space="preserve">
-    <value>用户操作</value>
+    <value>操作</value>
   </data>
   <data name="AppNotificationSamplePayload" xml:space="preserve">
     <value>&lt;toast launch="action=ToastClick"&gt;

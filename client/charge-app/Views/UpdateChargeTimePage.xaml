@@ -14,8 +14,9 @@
             <TextBlock
                 Margin="{StaticResource SmallTopMargin}"
                 Style="{StaticResource DetailSubTitleStyle}"
-                Text="充电请求额度" />
-            <TextBox Margin="0,16,0,0" />
+                Text="充电请求时间" />
+
+            <TextBox Width="300" Margin="0,16,0,0" />
 
         </StackPanel>
 

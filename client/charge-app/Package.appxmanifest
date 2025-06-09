@@ -13,7 +13,7 @@
   <Identity
     Name="f7b44345-7080-408f-88e0-5b1cce94b732"
     Publisher="CN=zhou_zhengming"
-    Version="1.0.0.0" />
+    Version="0.1.0.0" />
     
   <mp:PhoneIdentity PhoneProductId="f7b44345-7080-408f-88e0-5b1cce94b732" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
     

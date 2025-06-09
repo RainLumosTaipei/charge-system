@@ -34,7 +34,7 @@
                 Text="充电请求额度" />
             <TextBox
                 Margin="0 16 0 0"
-                MaxWidth="400"
+                Width="300"
                 HorizontalAlignment="Left"
                 Text="{x:Bind ViewModel.Req.Amount, Mode=TwoWay}"
                 />

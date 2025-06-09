@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 using charge_app.Contracts.Services;
+using charge_app.Core.Models;
 using charge_app.Helpers;
 using charge_app.ViewModels;
 
@@ -67,10 +68,39 @@ public class NavigationViewService : INavigationViewService
 
             if (selectedItem?.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
             {
+                if (UserDesc.IsUser && AdminPage.Contains(pageKey))
+                {
+                    pageKey = typeof(MainViewModel).FullName;
+                    ShowPermissionDeniedMessage();
+                }
+
+
                 _navigationService.NavigateTo(pageKey);
             }
         }
     }
+
+    private void ShowPermissionDeniedMessage()
+    {
+        // 通过 App.MainWindow 获取 XamlRoot
+        if (App.MainWindow != null && App.MainWindow.Content != null)
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "权限不足",
+                Content = "您没有权限访问此页面",
+                CloseButtonText = "确定",
+                XamlRoot = App.MainWindow.Content.XamlRoot
+            };
+            _ = dialog.ShowAsync();
+        }
+    }
+
+    private string?[] AdminPage = new[]
+    {
+        typeof(ParkViewModel).FullName,
+        typeof(UserViewModel).FullName
+    };
 
     private NavigationViewItem? GetSelectedItem(IEnumerable<object> menuItems, Type pageType)
     {
