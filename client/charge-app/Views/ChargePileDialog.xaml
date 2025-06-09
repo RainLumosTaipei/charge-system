@@ -69,11 +69,10 @@
             <Button
                 Grid.Column="0"
                 Margin="0,0,8,0"
-                Click="UpdatePileParameter"
-                Style="{StaticResource AccentButton}" 
                 HorizontalAlignment="Stretch"
+                Click="UpdatePileParameter"
                 Content="确定"
-                />
+                Style="{StaticResource AccentButton}" />
 
             <Button
                 Grid.Column="1"

@@ -18,7 +18,7 @@ namespace charge_app.Views;
 /// </summary>
 public sealed partial class UpdateChargeStatePage : Page
 {
-    public UpdateChargeStateViewModel ViewModel
+    public UpdateChargeStateViewModel? ViewModel
     {
         get;
         private set;
@@ -50,12 +50,15 @@ public sealed partial class UpdateChargeStatePage : Page
         var toggleSwitch = sender as ToggleSwitch;
         if (toggleSwitch == null) return;
         var isEnabled = toggleSwitch.IsOn;
+        if(ViewModel == null) return;
+
         var res= await ViewModel.UpdateState(isEnabled);
         if (res)
         {
             var notification = new AppNotificationBuilder()
                 .AddText("修改成功")
                 .BuildNotification();
+
 
             AppNotificationManager.Default.Show(notification);
         }

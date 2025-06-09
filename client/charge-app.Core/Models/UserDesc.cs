@@ -19,6 +19,12 @@ public class UserDesc  : INotifyPropertyChanged
         set;
     } = 0;
 
+    public static bool GIsCharging
+    {
+        get;
+        set;
+    } = false;
+
     public uint Id { get; set; }
     public string Name { get; set; }
 

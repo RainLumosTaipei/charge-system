@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Page
     x:Class="charge_app.Views.UpdateChargeStatePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:charge_app.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:charge_app.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:charge_app.Core.Models"
     mc:Ignorable="d">
 
     <Grid>
@@ -18,11 +19,10 @@
                 Text="充电请求状态" />
 
             <ToggleSwitch
-                IsOn="True"
+                IsOn="{x:Bind models:UserDesc.GIsCharging, Mode=TwoWay}"
                 OffContent="已停用"
                 OnContent="已启用"
-                Toggled="UpdateState"
-                />
+                Toggled="UpdateState" />
 
         </StackPanel>
 
